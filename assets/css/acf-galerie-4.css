@@ -1,0 +1,84 @@
+.acf-field-galerie-4 .acf-galerie-4-attachments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 15px;
+  min-height: 200px;
+}
+
+.acf-field-galerie-4 .acf-galerie-4-attachments > div {
+  width: 200px;
+  height: 200px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  overflow: hidden;
+  background-color: #fff;
+  padding: 3px;
+  text-align: center;
+  position: relative;
+}
+
+.acf-field-galerie-4 .acf-galerie-4-attachment-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 3px;
+}
+
+.acf-field-galerie-4 .acf-galerie-4-attachment-icon img {
+  margin: auto;
+  height: auto;
+  padding: 5px;
+  width: 70%;
+}
+
+.acf-galerie-4-container {
+  margin-bottom: 60px;
+}
+
+.acf-galerie-4-container:last-child {
+  margin-bottom: 0px;
+}
+
+.acf-field-galerie-4 .acf-galerie-4-add-media span.dashicons {
+  vertical-align: sub;
+  font-size: 18px;
+}
+
+.acf-field-galerie-4 .acf-galerie-4-file-name {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.6);
+  width: 92%;
+  bottom: 2px;
+  color: #fff;
+  padding: 7px 5px;
+  left: 3px;
+  right: 0px;
+  min-height: 16px;
+  max-height: 16px;
+}
+
+.acf-field-galerie-4 .acf-galerie-4-remove-attachment {
+  position: absolute;
+  cursor: pointer;
+  background: #000;
+  color: #fff;
+  border-radius: 50%;
+  top: 40%;
+  left: 40%;
+  height: 40px;
+  width: 40px;
+  border: none;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  font-size: revert;
+  padding: 0px;
+}
+
+.acf-field-galerie-4
+  .attachment-thumbnail-container:hover
+  > .acf-galerie-4-remove-attachment {
+  opacity: 1;
+}
