@@ -166,19 +166,11 @@ class acfg4_register_field_type extends \acf_field {
 		
 		if( ! wp_verify_nonce( $nonce_key, $field_key ) ) die();
 
-		if ( is_admin() && empty( $_POST['ID']) ) die();
-
-		if ( !is_admin() && empty( $_POST['_acf_post_id'] ) ) die();
-
 		if ( empty( $_POST[$field_type] ) or empty( $_POST[$field_type][$field['name']] ) ){
 			return array();
 		}
 		
-		$post_id = intval( !empty( $_POST['ID'] ) ??  $_POST['_acf_post_id'] );
-			
 		$value = array_map( 'sanitize_text_field', wp_unslash( $_POST[$field_type][$field['name']] ) );
-		
-		if ( wp_is_post_revision($post_id) or empty( $value ) ) die();
 
 		return array_map( 'intval', $value );
 	}
