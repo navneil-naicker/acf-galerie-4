@@ -42,8 +42,4 @@ function acfg4_init_register_type() {
 	require_once __DIR__ . '/class-acfg4-register-field-type.php';
 
 	acf_register_field_type( 'acfg4_register_field_type' );
-
-	if( is_admin() && 'term.php' == basename($_SERVER["SCRIPT_NAME"]) ){
-		wp_enqueue_media();
-	}
 }
