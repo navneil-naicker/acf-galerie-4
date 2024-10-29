@@ -215,11 +215,11 @@ class acfg4_register_field_type extends \acf_field {
 					);
 				} else {
 					$md = wp_get_attachment_metadata( $attachment->ID );
-	
+
 					$metadata['full'] = array(
 						"file" => $md['file'] ?? "",
 						"width" => $md['width'] ?? "",
-						"height" => $metadata['height'] ?? "",
+						"height" => $md['height'] ?? "",
 						"mime_type" => $attachment->post_mime_type,
 						"file_size" => $md['filesize'],
 						'file_url' => wp_get_attachment_image_src( $attachment->ID, 'full' )[0]
