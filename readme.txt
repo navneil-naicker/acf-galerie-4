@@ -37,6 +37,7 @@ ACF Galerie 4 is a versatile WordPress plugin designed to simplify the creation 
 == Changelog ==
 = 1.2.0 =
 * [Added] support for taxonomy
+* [Added] support for user profile
 
 = 1.1.0 =
 * [Added] 7 languages
