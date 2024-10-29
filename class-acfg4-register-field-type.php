@@ -287,7 +287,7 @@ class acfg4_register_field_type extends \acf_field {
 		wp_enqueue_script( $this->add_class('js') );
 		wp_enqueue_style( $this->add_class('css'));
 
-		if( is_admin() && 'term.php' == basename($_SERVER["SCRIPT_NAME"]) ){
+		if( is_admin() && in_array(basename($_SERVER["SCRIPT_NAME"]), array('profile.php', 'term.php'))){
 			wp_enqueue_media();
 		}
 	}
