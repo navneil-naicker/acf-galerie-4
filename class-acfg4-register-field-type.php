@@ -287,6 +287,9 @@ class acfg4_register_field_type extends \acf_field {
 		wp_enqueue_script( $this->add_class('js') );
 		wp_enqueue_style( $this->add_class('css'));
 
+		// register & include JS
+		wp_enqueue_script('jquery-ui-sortable');
+
 		if( is_admin() && in_array(basename($_SERVER["SCRIPT_NAME"]), array('profile.php', 'term.php', 'edit-tags.php'))){
 			wp_enqueue_media();
 		}
