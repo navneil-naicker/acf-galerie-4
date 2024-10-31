@@ -7,6 +7,13 @@
     datasets.push(dataset);
   }
 
+  $(document).ready(function () {
+    $(".acf-galerie-4-attachments").sortable({
+      placeholder: "ui-state-highlight",
+    });
+    $(".acf-galerie-4-attachments").disableSelection();
+  });
+
   function wp_media_library(container, dataset) {
     if (typeof wp.media !== "undefined") {
       const frame = wp.media({

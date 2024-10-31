@@ -166,19 +166,11 @@ class acfg4_register_field_type extends \acf_field {
 		
 		if( ! wp_verify_nonce( $nonce_key, $field_key ) ) die();
 
-		if ( is_admin() && empty( $_POST['ID']) ) die();
-
-		if ( !is_admin() && empty( $_POST['_acf_post_id'] ) ) die();
-
 		if ( empty( $_POST[$field_type] ) or empty( $_POST[$field_type][$field['name']] ) ){
 			return array();
 		}
 		
-		$post_id = intval( !empty( $_POST['ID'] ) ??  $_POST['_acf_post_id'] );
-			
 		$value = array_map( 'sanitize_text_field', wp_unslash( $_POST[$field_type][$field['name']] ) );
-		
-		if ( wp_is_post_revision($post_id) or empty( $value ) ) die();
 
 		return array_map( 'intval', $value );
 	}
@@ -223,11 +215,11 @@ class acfg4_register_field_type extends \acf_field {
 					);
 				} else {
 					$md = wp_get_attachment_metadata( $attachment->ID );
-	
+
 					$metadata['full'] = array(
 						"file" => $md['file'] ?? "",
 						"width" => $md['width'] ?? "",
-						"height" => $metadata['height'] ?? "",
+						"height" => $md['height'] ?? "",
 						"mime_type" => $attachment->post_mime_type,
 						"file_size" => $md['filesize'],
 						'file_url' => wp_get_attachment_image_src( $attachment->ID, 'full' )[0]
@@ -294,5 +286,12 @@ class acfg4_register_field_type extends \acf_field {
 
 		wp_enqueue_script( $this->add_class('js') );
 		wp_enqueue_style( $this->add_class('css'));
+
+		// register & include JS
+		wp_enqueue_script('jquery-ui-sortable');
+
+		if( is_admin() && in_array(basename($_SERVER["SCRIPT_NAME"]), array('profile.php', 'term.php', 'edit-tags.php'))){
+			wp_enqueue_media();
+		}
 	}
 }
