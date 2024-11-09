@@ -118,8 +118,6 @@ function acfg4_get_gallery( $attachment_ids ){
 		array_push($graphql_format, $l_graphql_format);
 	}
 
-	file_put_contents( __DIR__ . '/output.txt', print_r( $graphql_format, true ) );
-
 	return $graphql_format;
 }
 
