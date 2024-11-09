@@ -126,215 +126,215 @@ add_action( 'wpgraphql/acf/registry_init', function() {
 	register_graphql_object_type(
 		'ACF_Galerie_4',
 		[
-			'description' => __( 'Registered image size', 'wpgraphql-acf' ),
+			'description' => __( 'Registered image size', 'acf-galerie-4' ),
 			'fields'      => [
 				'id' => [
 					'type'        => 'String',
-					'description' => __( 'Attachment ID.', 'wpgraphql-acf' ),
+					'description' => __( 'Attachment ID.', 'acf-galerie-4' ),
 				],
 				'postAuthor' => [
 					'type'        => 'Integer',
-					'description' => __( 'Post author ID.', 'wpgraphql-acf' ),
+					'description' => __( 'Post author ID.', 'acf-galerie-4' ),
 				],
 				'postDate' => [
 					'type'        => 'String',
-					'description' => __( 'Post date.', 'wpgraphql-acf' ),
+					'description' => __( 'Post date.', 'acf-galerie-4' ),
 				],
 				'postDateGmt' => [
 					'type'        => 'String',
-					'description' => __( 'Post date in GMT.', 'wpgraphql-acf' ),
+					'description' => __( 'Post date in GMT.', 'acf-galerie-4' ),
 				],
 				'postContent' => [
 					'type'        => 'String',
-					'description' => __( 'Post content.', 'wpgraphql-acf' ),
+					'description' => __( 'Post content.', 'acf-galerie-4' ),
 				],
 				'postTitle' => [
 					'type'        => 'String',
-					'description' => __( 'Post title.', 'wpgraphql-acf' ),
+					'description' => __( 'Post title.', 'acf-galerie-4' ),
 				],
 				'postExcerpt' => [
 					'type'        => 'String',
-					'description' => __( 'Post excerpt.', 'wpgraphql-acf' ),
+					'description' => __( 'Post excerpt.', 'acf-galerie-4' ),
 				],
 				'postStatus' => [
 					'type'        => 'String',
-					'description' => __( 'Post status.', 'wpgraphql-acf' ),
+					'description' => __( 'Post status.', 'acf-galerie-4' ),
 				],
 				'commentStatus' => [
 					'type'        => 'String',
-					'description' => __( 'Comment status.', 'wpgraphql-acf' ),
+					'description' => __( 'Comment status.', 'acf-galerie-4' ),
 				],
 				'pingStatus' => [
 					'type'        => 'String',
-					'description' => __( 'Ping status.', 'wpgraphql-acf' ),
+					'description' => __( 'Ping status.', 'acf-galerie-4' ),
 				],
 				'postName' => [
 					'type'        => 'String',
-					'description' => __( 'Post name.', 'wpgraphql-acf' ),
+					'description' => __( 'Post name.', 'acf-galerie-4' ),
 				],
 				'toPing' => [
 					'type'        => 'String',
-					'description' => __( 'To ping list.', 'wpgraphql-acf' ),
+					'description' => __( 'To ping list.', 'acf-galerie-4' ),
 				],
 				'pinged' => [
 					'type'        => 'String',
-					'description' => __( 'Pinged list.', 'wpgraphql-acf' ),
+					'description' => __( 'Pinged list.', 'acf-galerie-4' ),
 				],
 				'postModified' => [
 					'type'        => 'String',
-					'description' => __( 'Post modified date.', 'wpgraphql-acf' ),
+					'description' => __( 'Post modified date.', 'acf-galerie-4' ),
 				],
 				'postModifiedGmt' => [
 					'type'        => 'String',
-					'description' => __( 'Post modified date in GMT.', 'wpgraphql-acf' ),
+					'description' => __( 'Post modified date in GMT.', 'acf-galerie-4' ),
 				],
 				'postContentFiltered' => [
 					'type'        => 'String',
-					'description' => __( 'Filtered post content.', 'wpgraphql-acf' ),
+					'description' => __( 'Filtered post content.', 'acf-galerie-4' ),
 				],
 				'postParent' => [
 					'type'        => 'Integer',
-					'description' => __( 'Post parent ID.', 'wpgraphql-acf' ),
+					'description' => __( 'Post parent ID.', 'acf-galerie-4' ),
 				],
 				'menuOrder' => [
 					'type'        => 'Integer',
-					'description' => __( 'Menu order.', 'wpgraphql-acf' ),
+					'description' => __( 'Menu order.', 'acf-galerie-4' ),
 				],
 				'postType' => [
 					'type'        => 'String',
-					'description' => __( 'Post type.', 'wpgraphql-acf' ),
+					'description' => __( 'Post type.', 'acf-galerie-4' ),
 				],
 				'postMimeType' => [
 					'type'        => 'String',
-					'description' => __( 'Post mime type.', 'wpgraphql-acf' ),
+					'description' => __( 'Post mime type.', 'acf-galerie-4' ),
 				],
 				'commentCount' => [
 					'type'        => 'Integer',
-					'description' => __( 'Comment count.', 'wpgraphql-acf' ),
+					'description' => __( 'Comment count.', 'acf-galerie-4' ),
 				],
 				'filter' => [
 					'type'        => 'String',
-					'description' => __( 'Post filter.', 'wpgraphql-acf' ),
+					'description' => __( 'Post filter.', 'acf-galerie-4' ),
 				],
 				'fullFile' => [
 					'type'        => 'String',
-					'description' => __( 'Full file name.', 'wpgraphql-acf' ),
+					'description' => __( 'Full file name.', 'acf-galerie-4' ),
 				],
 				'fullWidth' => [
 					'type'        => 'Integer',
-					'description' => __( 'Full file width.', 'wpgraphql-acf' ),
+					'description' => __( 'Full file width.', 'acf-galerie-4' ),
 				],
 				'fullHeight' => [
 					'type'        => 'Integer',
-					'description' => __( 'Full file height.', 'wpgraphql-acf' ),
+					'description' => __( 'Full file height.', 'acf-galerie-4' ),
 				],
 				'fullMimeType' => [
 					'type'        => 'String',
-					'description' => __( 'Full file mime type.', 'wpgraphql-acf' ),
+					'description' => __( 'Full file mime type.', 'acf-galerie-4' ),
 				],
 				'fullFileSize' => [
 					'type'        => 'Integer',
-					'description' => __( 'Full file size in bytes.', 'wpgraphql-acf' ),
+					'description' => __( 'Full file size in bytes.', 'acf-galerie-4' ),
 				],
 				'fullFileUrl' => [
 					'type'        => 'String',
-					'description' => __( 'Full file URL.', 'wpgraphql-acf' ),
+					'description' => __( 'Full file URL.', 'acf-galerie-4' ),
 				],
 				'mediumFullFile' => [
 					'type'        => 'String',
-					'description' => __( 'Medium file URL.', 'wpgraphql-acf' ),
+					'description' => __( 'Medium file URL.', 'acf-galerie-4' ),
 				],
 				'mediumfullWidth' => [
 					'type'        => 'Integer',
-					'description' => __( 'Medium file width.', 'wpgraphql-acf' ),
+					'description' => __( 'Medium file width.', 'acf-galerie-4' ),
 				],
 				'mediumfullHeight' => [
 					'type'        => 'Integer',
-					'description' => __( 'Medium file height.', 'wpgraphql-acf' ),
+					'description' => __( 'Medium file height.', 'acf-galerie-4' ),
 				],
 				'mediumfullMimeType' => [
 					'type'        => 'String',
-					'description' => __( 'Medium file mime type.', 'wpgraphql-acf' ),
+					'description' => __( 'Medium file mime type.', 'acf-galerie-4' ),
 				],
 				'mediumfullFileSize' => [
 					'type'        => 'Integer',
-					'description' => __( 'Medium file size in bytes.', 'wpgraphql-acf' ),
+					'description' => __( 'Medium file size in bytes.', 'acf-galerie-4' ),
 				],
 				'mediumfullFileUrl' => [
 					'type'        => 'String',
-					'description' => __( 'Medium file URL.', 'wpgraphql-acf' ),
+					'description' => __( 'Medium file URL.', 'acf-galerie-4' ),
 				],
 				'largeFullFile' => [
 					'type'        => 'String',
-					'description' => __( 'Large file URL.', 'wpgraphql-acf' ),
+					'description' => __( 'Large file URL.', 'acf-galerie-4' ),
 				],
 				'largefullWidth' => [
 					'type'        => 'Integer',
-					'description' => __( 'Large file width.', 'wpgraphql-acf' ),
+					'description' => __( 'Large file width.', 'acf-galerie-4' ),
 				],
 				'largefullHeight' => [
 					'type'        => 'Integer',
-					'description' => __( 'Large file height.', 'wpgraphql-acf' ),
+					'description' => __( 'Large file height.', 'acf-galerie-4' ),
 				],
 				'largefullMimeType' => [
 					'type'        => 'String',
-					'description' => __( 'Large file mime type.', 'wpgraphql-acf' ),
+					'description' => __( 'Large file mime type.', 'acf-galerie-4' ),
 				],
 				'largefullFileSize' => [
 					'type'        => 'Integer',
-					'description' => __( 'Large file size in bytes.', 'wpgraphql-acf' ),
+					'description' => __( 'Large file size in bytes.', 'acf-galerie-4' ),
 				],
 				'largefullFileUrl' => [
 					'type'        => 'String',
-					'description' => __( 'Large file URL.', 'wpgraphql-acf' ),
+					'description' => __( 'Large file URL.', 'acf-galerie-4' ),
 				],
 				'thumbnailFullFile' => [
 					'type'        => 'String',
-					'description' => __( 'Thumbnail file URL.', 'wpgraphql-acf' ),
+					'description' => __( 'Thumbnail file URL.', 'acf-galerie-4' ),
 				],
 				'thumbnailfullWidth' => [
 					'type'        => 'Integer',
-					'description' => __( 'Thumbnail file width.', 'wpgraphql-acf' ),
+					'description' => __( 'Thumbnail file width.', 'acf-galerie-4' ),
 				],
 				'thumbnailfullHeight' => [
 					'type'        => 'Integer',
-					'description' => __( 'Thumbnail file height.', 'wpgraphql-acf' ),
+					'description' => __( 'Thumbnail file height.', 'acf-galerie-4' ),
 				],
 				'thumbnailfullMimeType' => [
 					'type'        => 'String',
-					'description' => __( 'Thumbnail file mime type.', 'wpgraphql-acf' ),
+					'description' => __( 'Thumbnail file mime type.', 'acf-galerie-4' ),
 				],
 				'thumbnailfullFileSize' => [
 					'type'        => 'Integer',
-					'description' => __( 'Thumbnail file size in bytes.', 'wpgraphql-acf' ),
+					'description' => __( 'Thumbnail file size in bytes.', 'acf-galerie-4' ),
 				],
 				'thumbnailfullFileUrl' => [
 					'type'        => 'String',
-					'description' => __( 'Thumbnail file URL.', 'wpgraphql-acf' ),
+					'description' => __( 'Thumbnail file URL.', 'acf-galerie-4' ),
 				],
 				'mediumlargeFullFile' => [
 					'type'        => 'String',
-					'description' => __( 'Medium large file URL.', 'wpgraphql-acf' ),
+					'description' => __( 'Medium large file URL.', 'acf-galerie-4' ),
 				],
 				'mediumlargefullWidth' => [
 					'type'        => 'Integer',
-					'description' => __( 'Medium large file width.', 'wpgraphql-acf' ),
+					'description' => __( 'Medium large file width.', 'acf-galerie-4' ),
 				],
 				'mediumlargefullHeight' => [
 					'type'        => 'Integer',
-					'description' => __( 'Medium large file height.', 'wpgraphql-acf' ),
+					'description' => __( 'Medium large file height.', 'acf-galerie-4' ),
 				],
 				'mediumlargefullMimeType' => [
 					'type'        => 'String',
-					'description' => __( 'Medium large file mime type.', 'wpgraphql-acf' ),
+					'description' => __( 'Medium large file mime type.', 'acf-galerie-4' ),
 				],
 				'mediumlargefullFileSize' => [
 					'type'        => 'Integer',
-					'description' => __( 'Medium large file size in bytes.', 'wpgraphql-acf' ),
+					'description' => __( 'Medium large file size in bytes.', 'acf-galerie-4' ),
 				],
 				'mediumlargefullFileUrl' => [
 					'type'        => 'String',
-					'description' => __( 'Medium large file URL.', 'wpgraphql-acf' ),
+					'description' => __( 'Medium large file URL.', 'acf-galerie-4' ),
 				],
 			],
 		]
