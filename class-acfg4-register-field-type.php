@@ -176,9 +176,11 @@ class acfg4_register_field_type extends \acf_field {
 	}
 
 	function format_value( $value, $post_id, $field ) {
-		if ( empty($value) ) die();
-
 		$attachment_ids = array_map( 'intval', $value );
+
+		if( empty( $attachment_ids ) ){
+			return array();
+		}
 
 		return $this->get_attachments( $attachment_ids );
 	}
