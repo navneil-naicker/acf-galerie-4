@@ -15,7 +15,7 @@ class acfg4_wpgraphql {
         register_graphql_object_type(
             'ACF_Galerie_4',
             [
-                'description' => __( 'Registered image size', 'acf-galerie-4' ),
+                'description' => __( 'Registered schema for ACF Galerie 4', 'acf-galerie-4' ),
                 'fields'      => [
                     'id' => [
                         'type'        => 'String',
@@ -131,7 +131,7 @@ class acfg4_wpgraphql {
                     ],
                     'mediumFullFile' => [
                         'type'        => 'String',
-                        'description' => __( 'Medium file URL.', 'acf-galerie-4' ),
+                        'description' => __( 'Medium file name.', 'acf-galerie-4' ),
                     ],
                     'mediumfullWidth' => [
                         'type'        => 'Integer',
@@ -155,7 +155,7 @@ class acfg4_wpgraphql {
                     ],
                     'largeFullFile' => [
                         'type'        => 'String',
-                        'description' => __( 'Large file URL.', 'acf-galerie-4' ),
+                        'description' => __( 'Large file name.', 'acf-galerie-4' ),
                     ],
                     'largefullWidth' => [
                         'type'        => 'Integer',
@@ -179,7 +179,7 @@ class acfg4_wpgraphql {
                     ],
                     'thumbnailFullFile' => [
                         'type'        => 'String',
-                        'description' => __( 'Thumbnail file URL.', 'acf-galerie-4' ),
+                        'description' => __( 'Thumbnail file name.', 'acf-galerie-4' ),
                     ],
                     'thumbnailfullWidth' => [
                         'type'        => 'Integer',
@@ -203,7 +203,7 @@ class acfg4_wpgraphql {
                     ],
                     'mediumlargeFullFile' => [
                         'type'        => 'String',
-                        'description' => __( 'Medium large file URL.', 'acf-galerie-4' ),
+                        'description' => __( 'Medium large file name.', 'acf-galerie-4' ),
                     ],
                     'mediumlargefullWidth' => [
                         'type'        => 'Integer',
