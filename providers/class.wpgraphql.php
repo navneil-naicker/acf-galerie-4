@@ -238,7 +238,6 @@ class acfg4_wpgraphql {
                 'graphql_type' => [ 'list_of' => 'ACF_Galerie_4' ],
                 'resolve' => static function ( $root, $args, $context, $info, $field_type, $field_config ) {
                     $value = $field_config->resolve_field( $root, $args, $context, $info );
-                    file_put_contents( __DIR__ . '/output.txt', print_r($value, true) );
 
                     if ( empty( $value ) ) return null; 
 
