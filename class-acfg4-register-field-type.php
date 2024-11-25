@@ -248,10 +248,8 @@ class acfg4_register_field_type extends \acf_field {
 	 *               - 'metadata': An array of metadata details (e.g., file size, URLs).
 	 */
 	public function transform( $attachment_ids ){
-		
-		$attachments = $this->get_attachments( $attachment_ids );
-
 		$attachment_data = array();
+		$attachments = $this->get_attachments( $attachment_ids );
 
 		if ( !empty( $attachments ) ) {
 			foreach ($attachments as $attachment) {
