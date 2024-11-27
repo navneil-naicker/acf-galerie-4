@@ -14,12 +14,15 @@ Enhance your WordPress website with ACF Galerie 4, a powerful and customizable g
 == Description ==
 ACF Galerie 4 is a versatile WordPress plugin designed to simplify the creation and management of media galleries on your website. With its intuitive interface and robust features, you can effortlessly showcase your media in a visually appealing and engaging way.
 
+[youtube https://www.youtube.com/watch?v=jRMppgpcA-0]
+
 === Features ===
 1. **Effortless Gallery Creation**: Build stunning galleries with ease using Advanced Custom Fields (ACF).
 2. **Versatile Content**: Showcase documents, images, videos, and more in your galleries.
 3. **Seamless Integration**: Leverage the power of WordPress' Restful API for flexible data handling.
 4. **User-Friendly Forms**: Allow visitors to submit content directly through front-end forms powered by [acf_form()](https://www.advancedcustomfields.com/resources/acf_form/).
 5. **Elementor and Bricks Builder Compatibility (Coming Soon)**: Enjoy a seamless integration with Elementor and Bricks Builder for even more customization options.
+6. **GraphQL Support**: Unlock powerful and flexible queries for your custom galleries with [WPGraphQL](https://wordpress.org/plugins/wp-graphql/) and [WPGraphQL for ACF](https://wordpress.org/plugins/wpgraphql-acf/) integration.
 
 === How to use? ===
 1. Using "Advanced Custom Fields (ACF)", create a "Field Group".
