@@ -363,7 +363,7 @@ class acfg4_register_field_type extends \acf_field {
 		// register & include JS
 		wp_enqueue_script('jquery-ui-sortable');
 
-		if( is_admin() && in_array(basename($_SERVER["SCRIPT_NAME"]), array('profile.php', 'term.php', 'edit-tags.php', 'user-edit.php'))){
+		if( is_admin() && in_array(basename($_SERVER["SCRIPT_NAME"]), array('profile.php', 'term.php', 'edit-tags.php', 'user-edit.php', 'user-new.php'))){
 			wp_enqueue_media();
 		}
 	}
