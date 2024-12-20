@@ -7,6 +7,7 @@
           <div id="acfg4-migrate-popup-overlay"></div>
           <div id="acfg4-migrate-popup">
             <h2>ACF Galerie 4 — Migration</h2>
+            <div class="notice"></div>
             <p>This tool will assist you to migrate from ACF Photo Gallery Field or ACF Gallery Pro to ACF Galerie 4.</p>
             <p>
                 <label class="migrate-helper-text">Choose plugin you want to migrate from?</label>
@@ -34,7 +35,7 @@
             </p>
             <div class="action-buttons">
                 <button class="button" title="Cancel">Cancel</button>
-                <button class="button button-primary" title="Start Migration">Start Migration</button>
+                <button class="button button-primary" type="submit" title="Start Migration">Start Migration</button>
             </div>
           </div>
         `;
@@ -47,27 +48,41 @@
 
   $(document).on(
     "click",
-    "#acfg4-migrate-close-popup, #acfg4-migrate-popup-overlay",
+    "#acfg4-migrate-popup .action-buttons button[type='submit']",
     function () {
-      $("#acfg4-migrate-popup, #acfg4-migrate-popup-overlay").fadeOut(
-        function () {
-          $(this).remove();
-        }
-      );
+      const action = $("#acfg4-migrate-popup .action-buttons");
+      const notice = $("#acfg4-migrate-popup .notice");
+      action.fadeOut();
+      notice.removeClass("notice-success notice-error").text("");
+      notice
+        .addClass("notice-success")
+        .text("Migration has started. Please wait...")
+        .fadeIn();
+      $.ajax({
+        url: ajaxurl,
+        method: "POST",
+        data: {
+          action: "my_logged_in_user_action",
+        },
+        success: function (data) {
+          action.fadeIn();
+          notice
+            .removeClass("notice-success notice-error")
+            .addClass("notice-success")
+            .text(data.data.message)
+            .fadeIn();
+          console.log(data);
+        },
+        error: function (xhr, status, error) {
+          action.fadeIn();
+          notice
+            .removeClass("notice-success notice-error")
+            .addClass("notice-error")
+            .text(error.message)
+            .fadeIn();
+          console.log(error);
+        },
+      });
     }
   );
-
-  $(document).on("click", "button#acfg4-start-migration", function () {
-    $.ajax({
-      url: ajaxurl,
-      method: "GET",
-      action: "my_logged_in_user_ajax_function",
-      success: function (data) {
-        console.log(data);
-      },
-      error: function (xhr, status, error) {
-        console.log(error);
-      },
-    });
-  });
 })(jQuery);

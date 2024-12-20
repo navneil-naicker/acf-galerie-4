@@ -10,7 +10,7 @@
 }
 
 #acfg4-migrate-popup {
-  position: fixed;
+  position: absolute;
   top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -54,6 +54,12 @@
 
 #acfg4-migrate-popup .important-note-list {
   list-style-type: disc;
-  margin-left: 20px;
+  margin-left: 0px;
   padding-left: 20px;
+}
+
+#acfg4-migrate-popup .notice {
+  display: none;
+  margin: 0px;
+  padding: 8px 12px !important;
 }

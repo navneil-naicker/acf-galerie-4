@@ -102,22 +102,55 @@ function enqueue_plugin_admin_styles() {
 add_action('admin_enqueue_scripts', 'enqueue_plugin_admin_styles');
 
 function my_logged_in_user_ajax_function() {
-    if (!is_user_logged_in()) {
-        wp_send_json_error(['message' => 'Unauthorized. You must be logged in to perform this action.'], 403);
+    global $wpdb;
+    $wpdb->query('START TRANSACTION');
+
+    try {
+        $fields = $wpdb->get_results("SELECT * FROM {$wpdb->posts} WHERE post_type = 'acf-field'");
+
+        foreach( $fields as $field ){
+            $field_name = $field->post_excerpt;
+            $field_metadata = unserialize( $field->post_content );
+            $field_type = $field_metadata['type'];
+
+            if( $field_type === 'photo_gallery' ){
+                $field_metadata['type'] = 'galerie-4'; 
+                $updated_content = serialize($field_metadata);
+                
+                $wpdb->update(
+                    $wpdb->posts,
+                    array( 'post_content' => $updated_content ),
+                    array( 'ID' => $field->ID )
+                );
+
+                $meta_fields = $wpdb->get_results(
+                    $wpdb->prepare("SELECT * FROM {$wpdb->postmeta} WHERE meta_key = %s", $field_name )
+                );
+
+                foreach( $meta_fields as $meta){
+                    $meta_value = array_filter( explode(',', $meta->meta_value) );
+                    $meta_value_serialized = serialize( $meta_value );
+
+                    $wpdb->update(
+                        $wpdb->postmeta,
+                        array( 'meta_value' => $meta_value_serialized ),
+                        array( 'meta_id' => $meta->meta_id )
+                    );
+                }
+            }
+        }
+
+        $wpdb->query('COMMIT');
+
+        wp_send_json_success([
+            'message' => 'Migration has successfully completed.'
+        ]);
+    } catch (Exception $e) {
+        $wpdb->query('ROLLBACK');
+        wp_send_json_error(['message' => $e->getMessage()], 403);
     }
-
-    $user_id = get_current_user_id();
-    $user_info = get_userdata($user_id);
-
-    wp_send_json_success([
-        'message' => 'Request successful!',
-        'user' => [
-            'ID' => $user_info->ID,
-            'username' => $user_info->user_login,
-            'email' => $user_info->user_email,
-        ],
-    ]);
 
 	die();
 }
 add_action('wp_ajax_my_logged_in_user_action', 'my_logged_in_user_ajax_function');
+add_action('wp_ajax_nopriv_my_logged_in_user_action', 'my_logged_in_user_ajax_function');
