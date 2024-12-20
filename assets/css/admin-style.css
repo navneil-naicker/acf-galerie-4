@@ -1,4 +1,4 @@
-#acfg4-popup-overlay {
+#acfg4-migrate-popup-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -9,7 +9,7 @@
   display: none;
 }
 
-#acfg4-popup {
+#acfg4-migrate-popup {
   position: fixed;
   top: 35%;
   left: 50%;
@@ -23,15 +23,37 @@
   display: none;
 }
 
-#acfg4-close-popup {
-  background: #f44336;
-  color: #fff;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 4px;
-  cursor: pointer;
+#acfg4-migrate-popup .migrate-helper-text {
+  margin-bottom: 5px;
+  display: block;
 }
 
-.acfg4-action-buttons {
+#acfg4-migrate-popup .spacer-between-from-two {
+  padding-left: 15px;
+  padding-right: 15px;
+  vertical-align: middle;
+}
+
+#acfg4-migrate-popup input[type="text"],
+#acfg4-migrate-popup select {
+  border: 1px solid #8c8f94 !important;
+  vertical-align: top !important;
+}
+
+#acfg4-migrate-popup .action-buttons {
   text-align: right;
+  margin-top: 15px;
+}
+
+#acfg4-migrate-popup .action-buttons button {
+  padding: 5px 12px !important;
+  border: 1px solid #8c8f94 !important;
+  cursor: pointer !important;
+  margin-left: 12px !important;
+}
+
+#acfg4-migrate-popup .important-note-list {
+  list-style-type: disc;
+  margin-left: 20px;
+  padding-left: 20px;
 }
