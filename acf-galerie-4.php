@@ -79,3 +79,45 @@ add_action( 'wpgraphql/acf/registry_init', function() {
 	require_once __DIR__ . '/providers/class.wpgraphql.php';
 	new acfg4_wpgraphql();
 });
+
+add_action('admin_enqueue_scripts', 'enqueue_plugin_admin_scripts');
+function enqueue_plugin_admin_scripts() {
+    wp_enqueue_script(
+        'my-plugin-admin-js',
+        plugin_dir_url(__FILE__) . 'assets/js/admin-script.js',
+        ['jquery'],
+        '1.0.0',
+        true
+    );
+}
+
+function enqueue_plugin_admin_styles() {
+	wp_enqueue_style(
+		'my-plugin-admin-css',
+		plugin_dir_url(__FILE__) . 'assets/css/admin-style.css',
+		[],
+		'1.0.0'
+	);
+}
+add_action('admin_enqueue_scripts', 'enqueue_plugin_admin_styles');
+
+function my_logged_in_user_ajax_function() {
+    if (!is_user_logged_in()) {
+        wp_send_json_error(['message' => 'Unauthorized. You must be logged in to perform this action.'], 403);
+    }
+
+    $user_id = get_current_user_id();
+    $user_info = get_userdata($user_id);
+
+    wp_send_json_success([
+        'message' => 'Request successful!',
+        'user' => [
+            'ID' => $user_info->ID,
+            'username' => $user_info->user_login,
+            'email' => $user_info->user_email,
+        ],
+    ]);
+
+	die();
+}
+add_action('wp_ajax_my_logged_in_user_action', 'my_logged_in_user_ajax_function');
