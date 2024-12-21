@@ -101,7 +101,7 @@ function enqueue_plugin_admin_styles() {
 }
 add_action('admin_enqueue_scripts', 'enqueue_plugin_admin_styles');
 
-function my_logged_in_user_ajax_function() {
+function my_logged_in_user_ajax_function() {    
     global $wpdb;
     $wpdb->query('START TRANSACTION');
 

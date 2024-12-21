@@ -30,7 +30,7 @@
             </ul>
             <p>
                 <label>
-                    <input type="checkbox"/> I have read the important notes.
+                    <input type="checkbox" name="agree"/> I have read the important notes.
                 </label>
             </p>
             <div class="action-buttons">
@@ -46,6 +46,17 @@
     $("#acfg4-migrate-popup, #acfg4-migrate-popup-overlay").fadeIn();
   });
 
+  $(document).on("click", function () {
+    const agree = $("#acfg4-migrate-popup input[name='agree']");
+    const submitButton = $(".action-buttons .button-primary");
+
+    if (agree.prop("checked")) {
+      submitButton.prop("disabled", false);
+    } else {
+      submitButton.prop("disabled", true);
+    }
+  });
+
   $(document).on(
     "click",
     "#acfg4-migrate-popup .action-buttons button[type='submit']",
@@ -58,6 +69,7 @@
         .addClass("notice-success")
         .text("Migration has started. Please wait...")
         .fadeIn();
+
       $.ajax({
         url: ajaxurl,
         method: "POST",
@@ -74,16 +86,25 @@
             .addClass("notice-success")
             .text(data.data.message)
             .fadeIn();
-          console.log(data);
         },
         error: function (xhr, status, error) {
           action.fadeIn();
+          let errorMessage = "An error occurred";
+
+          try {
+            const response = JSON.parse(xhr.responseText);
+            if (response && response.data && response.data.message) {
+              errorMessage = response.data.message;
+            }
+          } catch (e) {
+            throw e;
+          }
+
           notice
             .removeClass("notice-success notice-error")
             .addClass("notice-error")
-            .text(error.message)
+            .text(errorMessage)
             .fadeIn();
-          console.log(error);
         },
       });
     }
