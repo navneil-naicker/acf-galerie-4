@@ -80,10 +80,21 @@ add_action( 'wpgraphql/acf/registry_init', function() {
 	new acfg4_wpgraphql();
 });
 
+add_action('admin_head', 'acfg4_start_migration_nonce');
+function acfg4_start_migration_nonce() {
+    if ( !is_admin() ) return;
+    $nonce = wp_create_nonce('acfg4_start_migration_nonce_action');
+?>
+    <script type="text/javascript">
+        const acfg4_start_migration_nonce = "<?php echo $nonce; ?>";
+    </script>
+<?php
+}
+
 add_action('admin_enqueue_scripts', 'enqueue_plugin_admin_scripts');
 function enqueue_plugin_admin_scripts() {
     wp_enqueue_script(
-        'my-plugin-admin-js',
+        'acfg4-admin-script',
         plugin_dir_url(__FILE__) . 'assets/js/admin-script.js',
         ['jquery'],
         '1.0.0',
@@ -91,25 +102,33 @@ function enqueue_plugin_admin_scripts() {
     );
 }
 
+add_action('admin_enqueue_scripts', 'enqueue_plugin_admin_styles');
 function enqueue_plugin_admin_styles() {
 	wp_enqueue_style(
-		'my-plugin-admin-css',
+		'acfg4-admin-css',
 		plugin_dir_url(__FILE__) . 'assets/css/admin-style.css',
 		[],
 		'1.0.0'
 	);
 }
-add_action('admin_enqueue_scripts', 'enqueue_plugin_admin_styles');
 
-function my_logged_in_user_ajax_function() {    
+add_action('wp_ajax_acfg4_start_migration', 'acfg4_start_migration');
+function acfg4_start_migration() {    
     global $wpdb;
     $wpdb->query('START TRANSACTION');
 
     try {
         $migrate_from = $_POST['migrate_from'];
 
+        if (
+            isset($_POST['nonce']) &&
+            !check_admin_referer('acfg4_start_migration_nonce_action', 'acfg4_start_migration_nonce') )
+        {
+            wp_send_json_error(['message' => "Nonce verification failed. Please try again."], 400);
+        }
+
         if( !in_array( $migrate_from, [1, 2] ) ){
-            wp_send_json_error(['message' => "Choose which plugin you want to migrate from."], 422);
+            wp_send_json_error(['message' => "Choose which plugin you want to migrate from."], 400);
         }
 
         $fields = $wpdb->get_results("SELECT * FROM {$wpdb->posts} WHERE post_type = 'acf-field'");
@@ -161,5 +180,3 @@ function my_logged_in_user_ajax_function() {
 
 	die();
 }
-add_action('wp_ajax_my_logged_in_user_action', 'my_logged_in_user_ajax_function');
-add_action('wp_ajax_nopriv_my_logged_in_user_action', 'my_logged_in_user_ajax_function');

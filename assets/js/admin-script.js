@@ -34,8 +34,8 @@
                 </label>
             </p>
             <div class="action-buttons">
-                <button class="button" title="Cancel">Cancel</button>
-                <button class="button button-primary" type="submit" title="Start Migration">Start Migration</button>
+                <button class="button" type="cancel" title="Cancel">Cancel</button>
+                <button class="button button-primary" type="submit" title="Start Migration" disabled>Start Migration</button>
             </div>
           </div>
         `;
@@ -46,16 +46,22 @@
     $("#acfg4-migrate-popup, #acfg4-migrate-popup-overlay").fadeIn();
   });
 
-  $(document).on("click", function () {
-    const agree = $("#acfg4-migrate-popup input[name='agree']");
-    const submitButton = $(".action-buttons .button-primary");
-
-    if (agree.prop("checked")) {
-      submitButton.prop("disabled", false);
-    } else {
-      submitButton.prop("disabled", true);
+  $(document).on(
+    "change",
+    "#acfg4-migrate-popup input[name='agree']",
+    function () {
+      const submitButton = $(".action-buttons .button-primary");
+      submitButton.prop("disabled", !this.checked);
     }
-  });
+  );
+
+  $(document).on(
+    "click",
+    "#acfg4-migrate-popup .action-buttons button[type='cancel']",
+    function () {
+      $("#acfg4-migrate-popup, #acfg4-migrate-popup-overlay").fadeOut();
+    }
+  );
 
   $(document).on(
     "click",
@@ -74,10 +80,11 @@
         url: ajaxurl,
         method: "POST",
         data: {
-          action: "my_logged_in_user_action",
+          action: "acfg4_start_migration",
           migrate_from: $(
             "#acfg4-migrate-popup select[name='migrate-from']"
           ).val(),
+          nonce: acfg4_start_migration_nonce,
         },
         success: function (data) {
           action.fadeIn();
@@ -89,7 +96,7 @@
         },
         error: function (xhr, status, error) {
           action.fadeIn();
-          let errorMessage = "An error occurred";
+          let errorMessage = "An error occurred.";
 
           try {
             const response = JSON.parse(xhr.responseText);
