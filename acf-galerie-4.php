@@ -106,6 +106,12 @@ function my_logged_in_user_ajax_function() {
     $wpdb->query('START TRANSACTION');
 
     try {
+        $migrate_from = $_POST['migrate_from'];
+
+        if( !in_array( $migrate_from, [1, 2] ) ){
+            wp_send_json_error(['message' => "Choose which plugin you want to migrate from."], 422);
+        }
+
         $fields = $wpdb->get_results("SELECT * FROM {$wpdb->posts} WHERE post_type = 'acf-field'");
 
         foreach( $fields as $field ){
@@ -113,7 +119,7 @@ function my_logged_in_user_ajax_function() {
             $field_metadata = unserialize( $field->post_content );
             $field_type = $field_metadata['type'];
 
-            if( $field_type === 'photo_gallery' ){
+            if( in_array( $field_type, ['photo_gallery', 'gallery'])){
                 $field_metadata['type'] = 'galerie-4'; 
                 $updated_content = serialize($field_metadata);
                 
@@ -123,19 +129,22 @@ function my_logged_in_user_ajax_function() {
                     array( 'ID' => $field->ID )
                 );
 
-                $meta_fields = $wpdb->get_results(
-                    $wpdb->prepare("SELECT * FROM {$wpdb->postmeta} WHERE meta_key = %s", $field_name )
-                );
-
-                foreach( $meta_fields as $meta){
-                    $meta_value = array_filter( explode(',', $meta->meta_value) );
-                    $meta_value_serialized = serialize( $meta_value );
-
-                    $wpdb->update(
-                        $wpdb->postmeta,
-                        array( 'meta_value' => $meta_value_serialized ),
-                        array( 'meta_id' => $meta->meta_id )
+                //If ACF Photo Gallery Field, we want the ID's to be serialized.
+                if( $migrate_from === 1 ){
+                    $meta_fields = $wpdb->get_results(
+                        $wpdb->prepare("SELECT * FROM {$wpdb->postmeta} WHERE meta_key = %s", $field_name )
                     );
+    
+                    foreach( $meta_fields as $meta){
+                        $meta_value = array_filter( explode(',', $meta->meta_value) );
+                        $meta_value_serialized = serialize( $meta_value );
+    
+                        $wpdb->update(
+                            $wpdb->postmeta,
+                            array( 'meta_value' => $meta_value_serialized ),
+                            array( 'meta_id' => $meta->meta_id )
+                        );
+                    }    
                 }
             }
         }
@@ -147,7 +156,7 @@ function my_logged_in_user_ajax_function() {
         ]);
     } catch (Exception $e) {
         $wpdb->query('ROLLBACK');
-        wp_send_json_error(['message' => $e->getMessage()], 403);
+        wp_send_json_error(['message' => $e->getMessage()], 500);
     }
 
 	die();

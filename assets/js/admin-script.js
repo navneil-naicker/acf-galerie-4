@@ -11,9 +11,9 @@
             <p>This tool will assist you to migrate from ACF Photo Gallery Field or ACF Gallery Pro to ACF Galerie 4.</p>
             <p>
                 <label class="migrate-helper-text">Choose plugin you want to migrate from?</label>
-                <select>
-                    <option>ACF Photo Gallery Field</option>
-                    <option>ACF Gallery Pro</option>
+                <select name="migrate-from">
+                    <option value="1">ACF Photo Gallery Field</option>
+                    <option value="2">ACF Gallery Pro</option>
                 </select>
                 <span class="spacer-between-from-two">to</span>
                 <input type="text" value="ACF Galerie 4" readonly />
@@ -63,6 +63,9 @@
         method: "POST",
         data: {
           action: "my_logged_in_user_action",
+          migrate_from: $(
+            "#acfg4-migrate-popup select[name='migrate-from']"
+          ).val(),
         },
         success: function (data) {
           action.fadeIn();
