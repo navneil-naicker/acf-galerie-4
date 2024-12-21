@@ -4,7 +4,7 @@ Donate link: https://buymeacoffee.com/navzme
 Tags: acf, gallery, images, videos, media
 Requires at least: 5.8
 Tested up to: 6.7
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -38,6 +38,9 @@ ACF Galerie 4 is a versatile WordPress plugin designed to simplify the creation 
 3. Install and Activate ACF Galerie 4 from your Plugins page
 
 == Changelog ==
+= 1.3.2 =
+* [Added] Migrate from ACF Gallery Field or ACF Gallery Pro to ACF Galerie 4.
+
 = 1.3.1 =
 * [Fixed] WordPress media library not opening in user edit screen
 
