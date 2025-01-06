@@ -83,7 +83,7 @@ add_action( 'wpgraphql/acf/registry_init', function() {
 add_action('admin_head', 'acfg4_start_migration_nonce');
 function acfg4_start_migration_nonce() {
     if ( !is_admin() ) return;
-    $nonce = wp_create_nonce('acfg4_start_migration_nonce_action');
+    $nonce = wp_create_nonce('acfg4_start_migration_nonce');
 ?>
     <script type="text/javascript">
         const acfg4_start_migration_nonce = "<?php echo $nonce; ?>";
@@ -113,7 +113,7 @@ function enqueue_plugin_admin_styles() {
 }
 
 add_action('wp_ajax_acfg4_start_migration', 'acfg4_start_migration');
-function acfg4_start_migration() {    
+function acfg4_start_migration() {
     global $wpdb;
     $wpdb->query('START TRANSACTION');
 
@@ -121,8 +121,8 @@ function acfg4_start_migration() {
         $migrate_from = $_POST['migrate_from'];
 
         if (
-            isset($_POST['nonce']) &&
-            !check_admin_referer('acfg4_start_migration_nonce_action', 'acfg4_start_migration_nonce') )
+            isset( $_POST['nonce'] ) &&
+            !wp_verify_nonce( $_POST['nonce'], 'acfg4_start_migration_nonce') )
         {
             wp_send_json_error(['message' => "Nonce verification failed. Please try again."], 400);
         }
