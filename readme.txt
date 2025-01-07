@@ -39,7 +39,7 @@ ACF Galerie 4 is a versatile WordPress plugin designed to simplify the creation 
 
 == Changelog ==
 = 1.3.2 =
-* [Added] Migrate from ACF Gallery Field or ACF Gallery Pro to ACF Galerie 4.
+* [Added] Migrate from ACF Photo Gallery Field or ACF Gallery Pro to ACF Galerie 4.
 
 = 1.3.1 =
 * [Fixed] WordPress media library not opening in user edit screen
