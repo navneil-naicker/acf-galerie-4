@@ -141,7 +141,7 @@ function acfg4_start_migration() {
             if( in_array( $field_type, ['photo_gallery', 'gallery'])){
                 $field_metadata['type'] = 'galerie-4'; 
                 $updated_content = serialize($field_metadata);
-                
+
                 $wpdb->update(
                     $wpdb->posts,
                     array( 'post_content' => $updated_content ),
@@ -149,11 +149,11 @@ function acfg4_start_migration() {
                 );
 
                 //If ACF Photo Gallery Field, we want the ID's to be serialized.
-                if( $migrate_from === 1 ){
+                if( $migrate_from == 1 ){
                     $meta_fields = $wpdb->get_results(
                         $wpdb->prepare("SELECT * FROM {$wpdb->postmeta} WHERE meta_key = %s", $field_name )
                     );
-    
+
                     foreach( $meta_fields as $meta){
                         $meta_value = array_filter( explode(',', $meta->meta_value) );
                         $meta_value_serialized = serialize( $meta_value );
@@ -163,7 +163,7 @@ function acfg4_start_migration() {
                             array( 'meta_value' => $meta_value_serialized ),
                             array( 'meta_id' => $meta->meta_id )
                         );
-                    }    
+                    }
                 }
             }
         }
