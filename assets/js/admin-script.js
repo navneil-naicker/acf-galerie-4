@@ -20,13 +20,13 @@
             </p>
             <p>Important Notes:</p>
             <ul class="important-note-list">
-                <li>I have taken backup of my website.</li>
-                <li>I understand that not all the features will work as expected.</li>
-                <li>I understand that ACF Galerie 4 takes no responsbility for any damage done to my website.</li>
-                <li>I have relevant knowledge to revert the website incase something goes wrong.</li>
-                <li>I understand that WordPress REST API will not be migrated.</li>
-                <li>I understand that galleries built using Elementor will not be migrated.</li>
-                <li>I understand that I will have to make changes in the source code of my website.</li>
+              <li>I have backed up my website.</li>
+              <li>I understand that some features may not work as expected.</li>
+              <li>I acknowledge that ACF Galerie 4 is not responsible for any damage to my website.</li>
+              <li>I have the necessary knowledge to restore my website if something goes wrong.</li>
+              <li>I understand that the WordPress REST API will not be migrated.</li>
+              <li>I understand that galleries created with Elementor will not be migrated.</li>
+              <li>I understand that I may need to modify the source code of my website.</li>
             </ul>
             <p>
                 <label>
