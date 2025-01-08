@@ -26,22 +26,11 @@ class acfg4_migration
     }
 
     public function enqueue_plugin_admin_scripts() {
-        wp_enqueue_script(
-            'acfg4-admin-script',
-            plugin_dir_url(__FILE__) . 'assets/js/admin-script.js',
-            ['jquery'],
-            '1.0.0',
-            true
-        );
+        wp_enqueue_script('acfg4-admin-script', ACFG4_PLUGIN_URL . 'assets/js/admin-script.js', ['jquery'], '1.0.0', true);
     }
 
     public function enqueue_plugin_admin_styles() {
-        wp_enqueue_style(
-            'acfg4-admin-css',
-            plugin_dir_url(__FILE__) . 'assets/css/admin-style.css',
-            [],
-            '1.0.0'
-        );
+        wp_enqueue_style('acfg4-admin-css', ACFG4_PLUGIN_URL . 'assets/css/admin-style.css', [], '1.0.0');
     }
 
     public function acfg4_start_migration() {

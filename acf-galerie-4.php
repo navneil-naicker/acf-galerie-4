@@ -23,6 +23,8 @@ define( 'ACFG4_PLUGIN', __FILE__ );
 define( 'ACFG4_PLUGIN_BASENAME', plugin_basename( ACFG4_PLUGIN ) );
 define( 'ACFG4_PLUGIN_NAME', trim( dirname( ACFG4_PLUGIN_BASENAME ), '/' ) );
 define( 'ACFG4_PLUGIN_DIR', untrailingslashit( dirname( ACFG4_PLUGIN ) ) );
+define( 'ACFG4_PLUGIN_URL', plugin_dir_url(__FILE__) );
+
 
 /**
  * Loads the text domain for translation in the plugin.
