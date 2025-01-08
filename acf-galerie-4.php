@@ -25,46 +25,49 @@ define( 'ACFG4_PLUGIN_NAME', trim( dirname( ACFG4_PLUGIN_BASENAME ), '/' ) );
 define( 'ACFG4_PLUGIN_DIR', untrailingslashit( dirname( ACFG4_PLUGIN ) ) );
 define( 'ACFG4_PLUGIN_URL', plugin_dir_url(__FILE__) );
 
-
-/**
- * Loads the text domain for translation in the plugin.
- *
- * Hooks into the `init` action to:
- * - Load the plugin's text domain for translation, allowing the plugin to support
- *   multiple languages.
- * - Specifies the path to the translation files, located in the `lang` directory.
- * - The `acf-galerie-4` text domain is used for translation strings within the plugin.
- *
- * This ensures that any text strings in the plugin can be translated according
- * to the user's WordPress language settings.
- *
- * @return void
- */
-add_action('init', 'acfg4_textdomain');
-function acfg4_textdomain() {
+add_action('init', 'acfg4_init');
+function acfg4_init() {
+	/**
+	 * Loads the text domain for translation in the plugin.
+	 *
+	 * Hooks into the `init` action to:
+	 * - Load the plugin's text domain for translation, allowing the plugin to support
+	 *   multiple languages.
+	 * - Specifies the path to the translation files, located in the `lang` directory.
+	 * - The `acf-galerie-4` text domain is used for translation strings within the plugin.
+	 *
+	 * This ensures that any text strings in the plugin can be translated according
+	 * to the user's WordPress language settings.
+	 *
+	 * @return void
+	 */
 	load_plugin_textdomain( 'acf-galerie-4', false, basename( dirname( __FILE__ ) ) . '/lang' );
-}
 
-/**
- * Registers the custom ACF field type during WordPress initialization.
- *
- * Hooks into the `init` action to:
- * - Check if the `acf_register_field_type` function is available. 
- *   This ensures compatibility with ACF Pro 5.0 or higher.
- * - Require the file that defines the `acfg4_register_field_type` class.
- * - Register the custom field type (`acfg4_register_field_type`) with ACF.
- *
- * This setup ensures that the `galerie-4` custom field type is properly
- * initialized and available for use in ACF field groups.
- *
- * @return void
- */
-add_action( 'init', 'acfg4_init_register_type' );
-function acfg4_init_register_type() {
+	// Include the Migration class from the 'providers' directory
+	require_once __DIR__ . '/providers/class.migration.php';
+
+	// Instantiate the Migration class to handle database migrations or other related tasks
+	new acfg4_migration();
+
+	/**
+	 * Registers the custom ACF field type during WordPress initialization.
+	 *
+	 * Hooks into the `init` action to:
+	 * - Check if the `acf_register_field_type` function is available. 
+	 *   This ensures compatibility with ACF Pro 5.0 or higher.
+	 * - Require the file that defines the `acfg4_register_field_type` class.
+	 * - Register the custom field type (`acfg4_register_field_type`) with ACF.
+	 *
+	 * This setup ensures that the `galerie-4` custom field type is properly
+	 * initialized and available for use in ACF field groups.
+	 *
+	 * @return void
+	 */
 	if ( ! function_exists( 'acf_register_field_type' ) ) return;
 	require_once __DIR__ . '/providers/class.register-field-type.php';
 	acf_register_field_type( 'acfg4_register_field_type' );
 }
+
 
 /**
  * Registers the custom ACF field type with WPGraphQL.
@@ -81,9 +84,3 @@ add_action( 'wpgraphql/acf/registry_init', function() {
 	require_once __DIR__ . '/providers/class.wpgraphql.php';
 	new acfg4_wpgraphql();
 });
-
-add_action( 'init', 'acfg4_migration' );
-function acfg4_migration() {
-    require_once __DIR__ . '/providers/class.migration.php';
-    new acfg4_migration();
-}
