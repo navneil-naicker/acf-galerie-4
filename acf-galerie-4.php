@@ -93,6 +93,11 @@ if ( ! class_exists( 'ACFG4' ) ) {
 			acf_register_field_type( 'acfg4_register_field_type' );
 		}
 
+		public function wpgraphql(){
+			require_once __DIR__ . '/providers/class.wpgraphql.php';
+			new acfg4_wpgraphql();
+		}
+
 		/**
 		 * Helper method to define constants.
 		 */
