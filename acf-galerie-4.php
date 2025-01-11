@@ -29,6 +29,7 @@ if ( ! class_exists( 'ACFG4' ) ) {
 			$this->define( 'ACFG4_PLUGIN_NAME', trim( dirname( ACFG4_PLUGIN_BASENAME ), '/' ) );
 			$this->define( 'ACFG4_PLUGIN_DIR', untrailingslashit( dirname( ACFG4_PLUGIN ) ) );
 			$this->define( 'ACFG4_PLUGIN_URL', plugin_dir_url( ACFG4_PLUGIN ) );
+			$this->define( 'ACFG4_PLUGIN_TYPE', 'galerie-4');
 
 			add_action('init', array($this, 'init'));
 			add_action( 'wpgraphql/acf/registry_init', array($this, 'wpgraphql'));

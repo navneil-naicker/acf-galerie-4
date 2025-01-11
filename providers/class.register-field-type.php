@@ -42,7 +42,7 @@ class acfg4_register_field_type extends \acf_field {
 		 *
 		 * No spaces. Underscores allowed.
 		 */
-		$this->name = 'galerie-4';
+		$this->name = ACFG4_PLUGIN_TYPE;
 
 		/**
 		 * Field type label.
