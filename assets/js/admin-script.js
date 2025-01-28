@@ -118,6 +118,10 @@
   );
 
   $(document).ready(function () {
+    if (acf_gallery_4_pro_localize?.license_activate === "1") {
+      return;
+    }
+
     $(
       "body.acf-admin-page #wpcontent .acf-admin-toolbar .acf-nav-upgrade-wrap"
     ).prepend(
