@@ -118,7 +118,10 @@
   );
 
   $(document).ready(function () {
-    if (acf_gallery_4_pro_localize?.license_activate === "1") {
+    if (
+      typeof acf_gallery_4_pro_localize !== "undefined" &&
+      acf_gallery_4_pro_localize?.license_activate === "1"
+    ) {
       return;
     }
 
