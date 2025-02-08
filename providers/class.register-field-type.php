@@ -88,7 +88,7 @@ class acfg4_register_field_type extends \acf_field {
 		
 		parent::__construct();
 
-		add_filter('plugin_action_links_acf-galerie-4/acf-galerie-4.php', array($this, 'add_custom_action_link'));
+		add_filter('plugin_action_links_acf-galerie-4/acf-galerie-4.php', array($this, 'add_action_link'));
 	}
 
 	/**
@@ -97,12 +97,13 @@ class acfg4_register_field_type extends \acf_field {
 	 * @param array $links An array of existing action links.
 	 * @return array Modified array of action links.
 	 */
-	function add_custom_action_link($links) {
-		// Add your custom link
-		$custom_link = '<a href="#" id="acfg4-migrate">Migrate</a>';
-		
-		// Append the custom link to the end of the array
-		$links[] = $custom_link;
+	function add_action_link($links) {		
+		// Append the link to the end of the array
+		$links[] = '<a href="#" id="acfg4-migrate">Migrate</a>';
+
+		if(!file_exists(WP_PLUGIN_DIR . '/acf-galerie-4-pro/acf-galerie-4-pro.php')){
+			$links[] = '<a href="https://galerie4.com/" target="_blank" style="color:#b32d2e;font-weight:bold;" title="Get ACF Galerie 4 Pro version">Go Pro</a>';
+		}
 	
 		return $links;
 	}
