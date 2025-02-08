@@ -24,13 +24,20 @@ ACF Galerie 4 is a versatile WordPress plugin designed to simplify the creation 
 5. **Elementor and Bricks Builder Compatibility (Coming Soon)**: Enjoy a seamless integration with Elementor and Bricks Builder for even more customization options.
 6. **GraphQL Support**: Unlock powerful and flexible queries for your custom galleries with [WPGraphQL](https://wordpress.org/plugins/wp-graphql/) and [WPGraphQL for ACF](https://wordpress.org/plugins/wpgraphql-acf/) integration.
 
-=== How to use? ===
-1. Using "Advanced Custom Fields (ACF)", create a "Field Group".
-2. Create a new field and choose the field type as "Galerie 4".
-3. After saving, go to the post/page where the field group is showing.
-4. You'll see the ACF field group, click on the "Add Media" button, choose media you want to add.
-5. Save the post/page.
-6. To show the media gallery on the front-end, use ACF's built-in function [get_field()](https://www.advancedcustomfields.com/resources/get_field/).
+=== Links ===
+* [Website](https://galerie4.com/?utm_source=wordpress.org&utm_medium=free)
+* [Support](https://galerie4.com/support)
+* [ACF Galerie 4 Pro](https://galerie4.com/?utm_source=wordpress.org&utm_medium=free&utm_campaign=upgrade)
+
+= PRO =
+The ACF Galerie 4 plugin is also available in a professional version, offering more features, enhanced functionality, and greater flexibility. ACF Galerie 4 Pro includes:
+
+* Support for Elemetor
+* Support for Bricks Builder
+* Lifetime updates
+* Priority Support
+
+[Upgrade to ACF Galerie 4 Pro 🚀](https://galerie4.com/?utm_source=wordpress.org&utm_medium=free&utm_campaign=upgrade)
 
 == Installation ==
 1. Visit Plugins > Add New
@@ -38,6 +45,10 @@ ACF Galerie 4 is a versatile WordPress plugin designed to simplify the creation 
 3. Install and Activate ACF Galerie 4 from your Plugins page
 
 == Changelog ==
+= 1.4.0 =
+* [Added] Wrapped the main function inside a class to prevent conflicts with other WordPress functions.
+* [Added] Added upgrade links to ACF Galerie 4 Pro for better user experience and visibility.
+
 = 1.3.2 =
 * [Added] Migrate from ACF Photo Gallery Field or ACF Gallery Pro to ACF Galerie 4.
 
