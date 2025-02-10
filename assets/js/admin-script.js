@@ -116,4 +116,21 @@
       });
     }
   );
+
+  $(document).ready(function () {
+    if (
+      typeof acf_gallery_4_pro_localize !== "undefined" &&
+      acf_gallery_4_pro_localize?.license_activate === "1"
+    ) {
+      return;
+    }
+
+    $(
+      "body.acf-admin-page #wpcontent .acf-admin-toolbar .acf-nav-upgrade-wrap"
+    ).prepend(
+      `<a target="_blank" href="https://galerie4.com/" class="btn-upgrade acf-admin-toolbar-upgrade-btn" style="margin-right:15px;">
+        <p>Upgrade to ACF Galerie 4 Pro</p>
+      </a>`
+    );
+  });
 })(jQuery);
