@@ -138,7 +138,10 @@ class acfg4_register_field_type extends \acf_field {
 		<div>
 			<div class="<?php echo esc_attr( $this->add_class('container') ); ?>">
 				<input type="hidden" name="<?php echo esc_attr( $field['name'] ); ?>" value="" />
-				<div class="<?php echo esc_attr( $this->add_class('attachments') ); ?> <?php echo esc_attr( $this->add_class('attachments') ); ?>-<?php echo esc_attr( $field['key'] ); ?>" data-name="<?php echo esc_attr( $field['name'] ); ?>">
+				<div
+					class="<?php echo esc_attr( $this->add_class('attachments') ); ?>
+						   <?php echo esc_attr( $this->add_class('attachments') ); ?>-<?php echo esc_attr( $field['key'] ); ?>"
+					data-name="<?php echo esc_attr( $field['name'] ); ?>">
 					<?php if ( $attachments ) : ?>
 						<?php
 						foreach ( $attachments as $item ) :
@@ -199,7 +202,10 @@ class acfg4_register_field_type extends \acf_field {
 	 * 
 	 * @return array An array of sanitized integer values representing the field's data.
 	 */
-	function update_value( $value, $post_id, $field ) {	
+	function update_value( $value, $post_id, $field ) {
+
+		//file_put_contents( __DIR__ . '/output-' . $field['key'] . '.txt', print_r($_POST, true) );
+		file_put_contents( __DIR__ . '/output.txt', print_r($_POST, true) );
 			
 		if ( empty( $value ) ) {
 			return array();

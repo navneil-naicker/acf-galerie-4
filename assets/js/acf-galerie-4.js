@@ -60,12 +60,16 @@
       .closest(".acf-galerie-4-container")
       .find(".acf-galerie-4-attachments");
 
+    const field_name = $(this)
+      .closest(".acf-galerie-4-container")
+      .find('input[type="hidden"]')[0].name;
+
     const key = container
       .attr("class")
       .match(/acf-galerie-4-attachments-(\w+)/)[1];
 
     const dataset = datasets.find((x) => x.key === key);
-    dataset["field_name"] = container[0].dataset.name;
+    dataset["field_name"] = field_name;
 
     wp_media_library(container, dataset);
   });
