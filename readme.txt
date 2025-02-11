@@ -21,7 +21,7 @@ ACF Galerie 4 is a versatile WordPress plugin designed to simplify the creation 
 2. **Versatile Content**: Showcase documents, images, videos, and more in your galleries.
 3. **Seamless Integration**: Leverage the power of WordPress' Restful API for flexible data handling.
 4. **User-Friendly Forms**: Allow visitors to submit content directly through front-end forms powered by [acf_form()](https://www.advancedcustomfields.com/resources/acf_form/).
-5. **Elementor and Bricks Builder Compatibility (Coming Soon)**: Enjoy a seamless integration with Elementor and Bricks Builder for even more customization options.
+5. **Elementor and Bricks Builder Compatibility (Available in ACF Galerie 4 Pro)**: Enjoy a seamless integration with Elementor and Bricks Builder for even more customization options.
 6. **GraphQL Support**: Unlock powerful and flexible queries for your custom galleries with [WPGraphQL](https://wordpress.org/plugins/wp-graphql/) and [WPGraphQL for ACF](https://wordpress.org/plugins/wpgraphql-acf/) integration.
 
 === Links ===

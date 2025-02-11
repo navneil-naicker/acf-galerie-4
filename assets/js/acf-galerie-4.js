@@ -56,15 +56,16 @@
   }
 
   $(document).on("click", ".acf-galerie-4-add-media", function (e) {
-    var container = $(this)
+    const container = $(this)
       .closest(".acf-galerie-4-container")
       .find(".acf-galerie-4-attachments");
 
-    var key = container
+    const key = container
       .attr("class")
       .match(/acf-galerie-4-attachments-(\w+)/)[1];
 
-    var dataset = datasets.find((x) => x.key === key);
+    const dataset = datasets.find((x) => x.key === key);
+    dataset["field_name"] = container[0].dataset.name;
 
     wp_media_library(container, dataset);
   });
@@ -83,7 +84,7 @@
 
       $html += `<div data-id="${attachment.id}" class="${thumbnail_class}">`;
       $html += `<img src='${icon}'/>`;
-      $html += `<input type="hidden" value="${attachment.id}" name="${dataset.type}[${dataset.name}][]"/>`;
+      $html += `<input type="hidden" value="${attachment.id}" name="${dataset.field_name}[]"/>`;
       $html += `</div>`;
     });
 

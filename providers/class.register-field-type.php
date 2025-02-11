@@ -136,10 +136,9 @@ class acfg4_register_field_type extends \acf_field {
 		}
 	?>
 		<div>
-			<input type="hidden" name="<?php echo esc_attr( $field['name'] ); ?>" value="" />
-			<input type="hidden" name="_<?php echo esc_attr( $this->name ); ?>_nonce[<?php echo esc_attr( $field['key'] ); ?>]" value="<?php echo esc_attr( wp_create_nonce( esc_attr( $field['key'] ) ) ); ?>" />
 			<div class="<?php echo esc_attr( $this->add_class('container') ); ?>">
-				<div class="<?php echo esc_attr( $this->add_class('attachments') ); ?> <?php echo esc_attr( $this->add_class('attachments') ); ?>-<?php echo esc_attr( $field['key'] ); ?>">
+				<input type="hidden" name="<?php echo esc_attr( $field['name'] ); ?>" value="" />
+				<div class="<?php echo esc_attr( $this->add_class('attachments') ); ?> <?php echo esc_attr( $this->add_class('attachments') ); ?>-<?php echo esc_attr( $field['key'] ); ?>" data-name="<?php echo esc_attr( $field['name'] ); ?>">
 					<?php if ( $attachments ) : ?>
 						<?php
 						foreach ( $attachments as $item ) :
@@ -153,13 +152,13 @@ class acfg4_register_field_type extends \acf_field {
 							endif;
 						?>
 							<div data-id="<?php echo esc_attr( $attachment_id ); ?>" class="<?php echo esc_attr( 'attachment-thumbnail-container' ); ?> <?php echo esc_attr( "attachment-thumbnail-container-{$attachment_id}" ); ?> <?php echo esc_attr( $thumbnail_class ); ?>">
+								<input type="hidden" name="<?php echo esc_attr( $field['name'] ); ?>[]" value="<?php echo esc_attr( $attachment_id ); ?>" />
 								<button
 									type="button"
 									class="<?php echo esc_attr( $this->add_class('remove-attachment') ); ?>"
 									title="Remove this media">
 									<span class="dashicons dashicons-trash"></span>
 								</button>
-								<input type="hidden" name="<?php echo esc_attr( $field['type'] ); ?>[<?php echo esc_attr( $field['_name'] ); ?>][]" value="<?php echo esc_attr( $attachment_id ); ?>" />
 								<img 
 									src="<?php echo esc_url( $thumbnail ); ?>"
 									alt="<?php echo esc_attr( $attachment_title ); ?>"
@@ -200,24 +199,11 @@ class acfg4_register_field_type extends \acf_field {
 	 * 
 	 * @return array An array of sanitized integer values representing the field's data.
 	 */
-	function update_value( $value, $post_id, $field ) {
-		$field_type = $field['type'];
-		$field_key = $field['key'];
-		$nonce_key = "_{$field_type}_nonce";
-
-		if(
-			empty( $_POST[$nonce_key] ) or 
-			empty( $_POST[$nonce_key][$field_key] ) ) die();
-
-		$nonce_key = sanitize_text_field( wp_unslash( $_POST[$nonce_key][$field_key] ) );
-		
-		if( ! wp_verify_nonce( $nonce_key, $field_key ) ) die();
-
-		if ( empty( $_POST[$field_type] ) or empty( $_POST[$field_type][$field['name']] ) ){
+	function update_value( $value, $post_id, $field ) {	
+			
+		if ( empty( $value ) ) {
 			return array();
 		}
-		
-		$value = array_map( 'sanitize_text_field', wp_unslash( $_POST[$field_type][$field['name']] ) );
 
 		return array_map( 'intval', $value );
 	}
