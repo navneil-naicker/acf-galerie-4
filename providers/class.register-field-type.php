@@ -202,11 +202,7 @@ class acfg4_register_field_type extends \acf_field {
 	 * 
 	 * @return array An array of sanitized integer values representing the field's data.
 	 */
-	function update_value( $value, $post_id, $field ) {
-
-		//file_put_contents( __DIR__ . '/output-' . $field['key'] . '.txt', print_r($_POST, true) );
-		file_put_contents( __DIR__ . '/output.txt', print_r($_POST, true) );
-			
+	function update_value( $value, $post_id, $field ) {		
 		if ( empty( $value ) ) {
 			return array();
 		}
