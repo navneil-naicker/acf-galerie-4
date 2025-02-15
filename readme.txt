@@ -45,6 +45,10 @@ The ACF Galerie 4 plugin is also available in a professional version, offering m
 3. Install and Activate ACF Galerie 4 from your Plugins page
 
 == Changelog ==
+= 1.4.1 =
+* [Added] Support for ACF Group and Repeater fields.
+* [Added] Mobile device support.
+
 = 1.4.0 =
 * [Added] Wrapped the main function inside a class to prevent conflicts with other WordPress functions.
 * [Added] Added upgrade links to ACF Galerie 4 Pro for better user experience and visibility.
