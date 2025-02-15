@@ -75,10 +75,12 @@
   transition: opacity 0.3s ease-in-out;
   font-size: revert;
   padding: 0px;
+  display: none;
 }
 
 .acf-field-galerie-4
   .attachment-thumbnail-container:hover
   > .acf-galerie-4-remove-attachment {
   opacity: 1;
+  display: inline-block;
 }
