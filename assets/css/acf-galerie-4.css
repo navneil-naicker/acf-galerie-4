@@ -11,12 +11,13 @@
   height: 200px;
   box-sizing: border-box;
   border: 1px solid #ccc;
-  border-radius: 3px;
+  border-radius: 5px;
   overflow: hidden;
   background-color: #fff;
-  padding: 3px;
+  padding: 5px;
   text-align: center;
   position: relative;
+  transition: box-shadow 0.3s ease-in-out;
 }
 
 .acf-field-galerie-4 .acf-galerie-4-attachment-thumbnail img {
@@ -24,7 +25,7 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  border-radius: 3px;
+  border-radius: 5px;
 }
 
 .acf-field-galerie-4 .acf-galerie-4-attachment-icon img {
@@ -39,48 +40,64 @@
 }
 
 .acf-galerie-4-container:last-child {
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 
 .acf-field-galerie-4 .acf-galerie-4-add-media span.dashicons {
-  vertical-align: sub;
+  vertical-align: middle;
   font-size: 18px;
 }
 
 .acf-field-galerie-4 .acf-galerie-4-file-name {
   position: absolute;
   background: rgba(0, 0, 0, 0.6);
-  width: 92%;
+  width: calc(100% - 6px);
   bottom: 2px;
   color: #fff;
   padding: 7px 5px;
   left: 3px;
-  right: 0px;
-  min-height: 16px;
-  max-height: 16px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-radius: 3px;
 }
 
 .acf-field-galerie-4 .acf-galerie-4-remove-attachment {
   position: absolute;
   cursor: pointer;
-  background: #000;
+  background: rgba(0, 0, 0, 0.8);
   color: #fff;
   border-radius: 50%;
-  top: 40%;
-  left: 40%;
+  top: 50%;
+  left: 50%;
   height: 40px;
   width: 40px;
   border: none;
   opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-  font-size: revert;
-  padding: 0px;
-  display: none;
+  transition: opacity 0.3s ease-in-out, transform 0.2s ease-in-out;
+  font-size: 16px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-50%, -50%);
+  outline: none;
 }
 
 .acf-field-galerie-4
   .attachment-thumbnail-container:hover
+  > .acf-galerie-4-remove-attachment,
+.acf-field-galerie-4
+  .attachment-thumbnail-container:focus-within
   > .acf-galerie-4-remove-attachment {
   opacity: 1;
-  display: inline-block;
+  display: flex;
+}
+
+.acf-field-galerie-4 .acf-galerie-4-remove-attachment:hover {
+  background: rgba(255, 0, 0, 0.9);
+  transform: translate(-50%, -50%) scale(1.1);
 }

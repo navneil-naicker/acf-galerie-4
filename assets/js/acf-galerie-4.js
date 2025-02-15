@@ -116,19 +116,18 @@
     "touchstart",
     ".acf-field-galerie-4 .attachment-thumbnail-container img",
     function (event) {
-      event.stopPropagation(); // Prevent event from bubbling up
+      event.stopPropagation();
 
       let $button = $(this)
-        .closest(".attachment-thumbnail-container") // Move up to the container
-        .find(".acf-galerie-4-remove-attachment"); // Find the button inside
+        .closest(".attachment-thumbnail-container")
+        .find(".acf-galerie-4-remove-attachment");
 
-      // Toggle visibility
       if ($button.css("opacity") === "1") {
         $button.css("opacity", "0");
         $button.css("display", "none");
       } else {
-        $(".acf-galerie-4-remove-attachment").css("opacity", "0"); // Hide other buttons
-        $button.css("opacity", "1"); // Show current button
+        $(".acf-galerie-4-remove-attachment").css("opacity", "0");
+        $button.css("opacity", "1");
         $button.css("display", "inline-block");
       }
     }
