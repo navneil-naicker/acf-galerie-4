@@ -56,15 +56,20 @@
   }
 
   $(document).on("click", ".acf-galerie-4-add-media", function (e) {
-    var container = $(this)
+    const container = $(this)
       .closest(".acf-galerie-4-container")
       .find(".acf-galerie-4-attachments");
 
-    var key = container
+    const field_name = $(this)
+      .closest(".acf-galerie-4-container")
+      .find('input[type="hidden"]')[0].name;
+
+    const key = container
       .attr("class")
       .match(/acf-galerie-4-attachments-(\w+)/)[1];
 
-    var dataset = datasets.find((x) => x.key === key);
+    const dataset = datasets.find((x) => x.key === key);
+    dataset["field_name"] = field_name;
 
     wp_media_library(container, dataset);
   });
@@ -83,7 +88,7 @@
 
       $html += `<div data-id="${attachment.id}" class="${thumbnail_class}">`;
       $html += `<img src='${icon}'/>`;
-      $html += `<input type="hidden" value="${attachment.id}" name="${dataset.type}[${dataset.name}][]"/>`;
+      $html += `<input type="hidden" value="${attachment.id}" name="${dataset.field_name}[]"/>`;
       $html += `</div>`;
     });
 
@@ -91,8 +96,8 @@
   }
 
   $(document).on(
-    "click",
-    ".acf-field-galerie-4 .acf-galerie-4-remove-attachment ",
+    "click touchend",
+    ".acf-field-galerie-4 .acf-galerie-4-remove-attachment",
     function () {
       var id = $(this).closest(".attachment-thumbnail-container").data("id");
 
@@ -103,6 +108,27 @@
         )
       ) {
         $(`.attachment-thumbnail-container-${id}`).remove();
+      }
+    }
+  );
+
+  $(document).on(
+    "touchstart",
+    ".acf-field-galerie-4 .attachment-thumbnail-container img",
+    function (event) {
+      event.stopPropagation();
+
+      let $button = $(this)
+        .closest(".attachment-thumbnail-container")
+        .find(".acf-galerie-4-remove-attachment");
+
+      if ($button.css("opacity") === "1") {
+        $button.css("opacity", "0");
+        $button.css("display", "none");
+      } else {
+        $(".acf-galerie-4-remove-attachment").css("opacity", "0");
+        $button.css("opacity", "1");
+        $button.css("display", "inline-block");
       }
     }
   );
