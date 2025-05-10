@@ -3,7 +3,7 @@ Contributors: navzme
 Donate link: https://buymeacoffee.com/navzme
 Tags: acf, gallery, images, videos, media
 Requires at least: 5.8
-Tested up to: 6.7
+Tested up to: 6.8
 Stable tag: 1.4.1
 Requires PHP: 7.0
 License: GPLv2 or later
