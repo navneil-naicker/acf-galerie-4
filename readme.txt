@@ -4,7 +4,7 @@ Donate link: https://buymeacoffee.com/navzme
 Tags: acf, gallery, images, videos, media
 Requires at least: 5.8
 Tested up to: 6.8
-Stable tag: 1.4.1
+Stable tag: 1.4.2
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -45,6 +45,9 @@ The ACF Galerie 4 plugin is also available in a professional version, offering m
 3. Install and Activate ACF Galerie 4 from your Plugins page
 
 == Changelog ==
+= 1.4.2 =
+* [Fixed] array_keys() expects array, null issue in PHP 8.x
+
 = 1.4.1 =
 * [Added] Support for ACF Group and Repeater fields.
 * [Added] Mobile device support.
