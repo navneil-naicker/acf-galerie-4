@@ -8,7 +8,7 @@
  * Text Domain: acf-galerie-4
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Version: 1.4.2
+ * Version: 1.4.3
  * Domain Path: /lang
  * Requires PHP: 7.4
  * Requires at least: 6.0
@@ -23,7 +23,7 @@ if ( ! class_exists( 'ACFG4' ) ) {
 	class ACFG4 {
 
 		public function initialize() {
-			$this->define( 'ACFG4_VERSION', '1.4.2' );
+			$this->define( 'ACFG4_VERSION', '1.4.3' );
 			$this->define( 'ACFG4_PLUGIN', __FILE__ );
 			$this->define( 'ACFG4_PLUGIN_BASENAME', plugin_basename( ACFG4_PLUGIN ) );
 			$this->define( 'ACFG4_PLUGIN_NAME', trim( dirname( ACFG4_PLUGIN_BASENAME ), '/' ) );

@@ -18,7 +18,7 @@ class acfg4_migration
     }
     
     function acfg4_start_migration_nonce() {
-        if ( !is_admin() ) return;
+        if ( ! current_user_can('manage_options') ) return;
         $nonce = wp_create_nonce('acfg4_start_migration_nonce');
     ?>
         <script type="text/javascript">const acfg4_start_migration_nonce = "<?php echo $nonce; ?>";</script>
@@ -26,26 +26,40 @@ class acfg4_migration
     }
 
     public function enqueue_plugin_admin_scripts() {
-        wp_enqueue_script('acfg4-admin-script', ACFG4_PLUGIN_URL . 'assets/js/admin-script.js', ['jquery'], '1.0.0', true);
+        if ( current_user_can('manage_options') ) {
+            wp_enqueue_script('acfg4-admin-script', ACFG4_PLUGIN_URL . 'assets/js/admin-script.js', ['jquery'], '1.0.0', true);
+        }
     }
 
     public function enqueue_plugin_admin_styles() {
-        wp_enqueue_style('acfg4-admin-css', ACFG4_PLUGIN_URL . 'assets/css/admin-style.css', [], '1.0.0');
+        if ( current_user_can('manage_options') ) {
+            wp_enqueue_style('acfg4-admin-css', ACFG4_PLUGIN_URL . 'assets/css/admin-style.css', [], '1.0.0');
+        }
     }
 
     public function acfg4_start_migration() {
+        if ( ! current_user_can('manage_options') ) {
+            wp_send_json_error(
+                ['message' => 'Unauthorized'],
+                403
+            );
+        }
+        
+        if (
+            ! isset($_POST['nonce']) ||
+            ! wp_verify_nonce($_POST['nonce'], 'acfg4_start_migration_nonce')
+        ) {
+            wp_send_json_error(
+                ['message' => 'Invalid or missing nonce'],
+                400
+            );
+        }
+
         global $wpdb;
         $wpdb->query('START TRANSACTION');
 
         try {
             $migrate_from = $_POST['migrate_from'];
-
-            if (
-                isset( $_POST['nonce'] ) &&
-                !wp_verify_nonce( $_POST['nonce'], 'acfg4_start_migration_nonce') )
-            {
-                wp_send_json_error(['message' => "Nonce verification failed. Please try again."], 400);
-            }
 
             if( !in_array( $migrate_from, [1, 2] ) ){
                 wp_send_json_error(['message' => "Choose which plugin you want to migrate from."], 400);
