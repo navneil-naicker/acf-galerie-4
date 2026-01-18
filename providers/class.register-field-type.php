@@ -136,21 +136,6 @@ class acfg4_register_field_type extends \acf_field {
 				),
 			)
 		);
-
-		acf_render_field_setting(
-			$field,
-			array(
-				'label'        => __( 'Library', 'acf' ),
-				'instructions' => __( 'Limit the media library choice', 'acf' ),
-				'type'         => 'radio',
-				'name'         => 'library',
-				'layout'       => 'horizontal',
-				'choices'      => array(
-					'all'        => __( 'All', 'acf' ),
-					'uploadedTo' => __( 'Uploaded to post', 'acf' ),
-				),
-			)
-		);
 	}
 
 	/**
