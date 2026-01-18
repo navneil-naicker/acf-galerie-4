@@ -4,7 +4,7 @@ Donate link: https://buymeacoffee.com/navzme
 Tags: acf, gallery, images, videos, media
 Requires at least: 5.8
 Tested up to: 6.9
-Stable tag: 1.4.3
+Stable tag: 1.4.4
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -45,6 +45,10 @@ The ACF Galerie 4 plugin is also available in a professional version, offering m
 3. Install and Activate ACF Galerie 4 from your Plugins page
 
 == Changelog ==
+= 1.4.4 =
+* [Added] Limit container height so that images don't take up the entire screen and squashing the edtitor and other metabox.
+* [Added] Return format options and media library settings to the custom field type
+
 = 1.4.3 =
 * [Fixed] Added proper capability and nonce checks to migration process
 
