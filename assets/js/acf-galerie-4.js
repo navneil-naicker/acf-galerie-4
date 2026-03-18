@@ -16,6 +16,7 @@
 
   function wp_media_library(container, dataset) {
     var mimeTypes = container.data("mime-types") || "";
+    var buttonLabel = container.data("button-label") || "Add Media";
     var libraryOptions = {};
 
     if (mimeTypes.trim() !== "") {
@@ -31,8 +32,8 @@
 
     if (typeof wp.media !== "undefined") {
       const frame = wp.media({
-        title: "Add Media",
-        button: { text: "Add Media" },
+        title: buttonLabel,
+        button: { text: buttonLabel },
         multiple: "add",
         library: libraryOptions
       });
