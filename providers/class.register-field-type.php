@@ -427,10 +427,12 @@ class acfg4_register_field_type extends \acf_field
 
 				if (!preg_match('/image\/\w+/', $attachment->post_mime_type)) {
 					$file_url = wp_get_attachment_url($attachment->ID);
+					$file_path = get_attached_file($attachment->ID);
+					$file_size = ($file_path && file_exists($file_path)) ? filesize($file_path) : 0;
 					$metadata['file'] = array(
 						"file" => basename($file_url),
 						"mime_type" => $attachment->post_mime_type,
-						"file_size" => $md['filesize'] ?? "",
+						"file_size" => $file_size,
 						'file_url' => $file_url ?? ""
 					);
 				}

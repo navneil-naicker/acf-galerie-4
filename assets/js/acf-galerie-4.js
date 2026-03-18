@@ -104,7 +104,8 @@
       var icon = attachment.icon;
       var thumbnail_class = "acf-galerie-4-attachment-icon";
       var title = attachment.title || attachment.filename || "";
-      var titleAttr = title.replace(/"/g, "&quot;");
+      var titleEscaped = $("<div/>").text(title).html();
+      var titleAttr = titleEscaped.replace(/"/g, "&quot;");
 
       if (attachment && attachment.sizes && attachment.sizes.medium && attachment.sizes.medium.url) {
         icon = attachment.sizes.medium.url;
