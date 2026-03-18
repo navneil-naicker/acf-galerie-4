@@ -140,6 +140,16 @@ class acfg4_register_field_type extends \acf_field
 			),
 		)
 		);
+		acf_render_field_setting(
+			$field,
+			array(
+			'label' => __('Button Label', 'acf-galerie-4'),
+			'instructions' => __('Customize the add media button text.', 'acf-galerie-4'),
+			'type' => 'text',
+			'name' => 'button_label',
+			'placeholder' => __('Add Media', 'acf-galerie-4'),
+		)
+		);
 	}
 
 	public function render_field_validation_settings($field)
@@ -190,6 +200,8 @@ class acfg4_register_field_type extends \acf_field
 			$attachment_ids = array_map('intval', $field['value']);
 			$attachments = $this->transform($attachment_ids);
 		}
+
+		$button_label = !empty($field['button_label']) ? $field['button_label'] : __('Add Media', 'acf-galerie-4');
 ?>
 		<div>
 			<div class="<?php echo esc_attr($this->add_class('container')); ?>">
@@ -218,7 +230,8 @@ class acfg4_register_field_type extends \acf_field
 					data-name="<?php echo esc_attr($field['name']); ?>"
 					data-mime-types="<?php echo esc_attr($resolved_mime_types); ?>"
 					data-min-selection="<?php echo esc_attr($field['min_selection'] ?? ''); ?>"
-					data-max-selection="<?php echo esc_attr($field['max_selection'] ?? ''); ?>">
+					data-max-selection="<?php echo esc_attr($field['max_selection'] ?? ''); ?>"
+					data-button-label="<?php echo esc_attr($button_label); ?>">
 					<?php if ($attachments): ?>
 						<?php
 			foreach ($attachments as $item):
@@ -258,7 +271,7 @@ class acfg4_register_field_type extends \acf_field
 				<div>
 					<button type="button" class="button button-primary <?php echo esc_attr($this->add_class('add-media')); ?>">
 						<span class="dashicons dashicons-plus-alt2"></span>
-						<?php esc_html_e('Add Media', 'acf-galerie-4'); ?>
+						<?php echo esc_html($button_label); ?>
 					</button>
 				</div>
 			</div>
