@@ -153,6 +153,28 @@ class acfg4_register_field_type extends \acf_field
 			'name' => 'mime_types',
 		)
 		);
+
+		acf_render_field_setting(
+			$field,
+			array(
+			'label' => __('Minimum Selection', 'acf'),
+			'instructions' => __('Minimum number of items that must be selected in the gallery.', 'acf'),
+			'type' => 'number',
+			'name' => 'min_selection',
+			'min' => 0,
+		)
+		);
+
+		acf_render_field_setting(
+			$field,
+			array(
+			'label' => __('Maximum Selection', 'acf'),
+			'instructions' => __('Maximum number of items allowed in the gallery. Leave empty for no limit.', 'acf'),
+			'type' => 'number',
+			'name' => 'max_selection',
+			'min' => 0,
+		)
+		);
 	}
 
 	/**
@@ -173,28 +195,30 @@ class acfg4_register_field_type extends \acf_field
 			<div class="<?php echo esc_attr($this->add_class('container')); ?>">
 				<input type="hidden" name="<?php echo esc_attr($field['name']); ?>" value="" />
 				<?php
-				$resolved_mime_types = '';
-				if ( !empty( $field['mime_types'] ) ) {
-					$extensions = array_map( 'trim', explode( ',', strtolower( $field['mime_types'] ) ) );
-					$extensions = array_filter( $extensions );
-					$wp_mime_types = wp_get_mime_types();
-					$resolved = array();
-					foreach ( $extensions as $ext ) {
-						foreach ( $wp_mime_types as $exts => $mime ) {
-							if ( preg_match( '/(^|\|)' . preg_quote( $ext, '/' ) . '($|\|)/', $exts ) ) {
-								$resolved[] = $mime;
-								break;
-							}
-						}
+		$resolved_mime_types = '';
+		if (!empty($field['mime_types'])) {
+			$extensions = array_map('trim', explode(',', strtolower($field['mime_types'])));
+			$extensions = array_filter($extensions);
+			$wp_mime_types = wp_get_mime_types();
+			$resolved = array();
+			foreach ($extensions as $ext) {
+				foreach ($wp_mime_types as $exts => $mime) {
+					if (preg_match('/(^|\|)' . preg_quote($ext, '/') . '($|\|)/', $exts)) {
+						$resolved[] = $mime;
+						break;
 					}
-					$resolved_mime_types = implode( ',', array_unique( $resolved ) );
 				}
-				?>
+			}
+			$resolved_mime_types = implode(',', array_unique($resolved));
+		}
+?>
 				<div
-					class="<?php echo esc_attr( $this->add_class('attachments') ); ?>
-						   <?php echo esc_attr( $this->add_class('attachments') ); ?>-<?php echo esc_attr( $field['key'] ); ?>"
-					data-name="<?php echo esc_attr( $field['name'] ); ?>"
-					data-mime-types="<?php echo esc_attr( $resolved_mime_types ); ?>">
+					class="<?php echo esc_attr($this->add_class('attachments')); ?>
+						   <?php echo esc_attr($this->add_class('attachments')); ?>-<?php echo esc_attr($field['key']); ?>"
+					data-name="<?php echo esc_attr($field['name']); ?>"
+					data-mime-types="<?php echo esc_attr($resolved_mime_types); ?>"
+					data-min-selection="<?php echo esc_attr($field['min_selection'] ?? ''); ?>"
+					data-max-selection="<?php echo esc_attr($field['max_selection'] ?? ''); ?>">
 					<?php if ($attachments): ?>
 						<?php
 			foreach ($attachments as $item):
@@ -230,6 +254,7 @@ class acfg4_register_field_type extends \acf_field
 					<?php
 		endif; ?>
 				</div>
+				<div class="<?php echo esc_attr($this->add_class('validation-notice')); ?>" style="display:none;"></div>
 				<div>
 					<button type="button" class="button button-primary <?php echo esc_attr($this->add_class('add-media')); ?>">
 						<span class="dashicons dashicons-plus-alt2"></span>
@@ -258,6 +283,48 @@ class acfg4_register_field_type extends \acf_field
 	 * 
 	 * @return array An array of sanitized integer values representing the field's data.
 	 */
+	/**
+	 * Validates the field value before saving.
+	 *
+	 * Checks the gallery item count against Minimum Selection and Maximum Selection settings.
+	 *
+	 * @param bool|string $valid   Whether the value is valid (true) or the error message.
+	 * @param mixed       $value   The field value.
+	 * @param array       $field   The field configuration.
+	 * @param string      $input   The input element's name attribute.
+	 *
+	 * @return bool|string True if valid, or an error message string.
+	 */
+	function validate_value($valid, $value, $field, $input)
+	{
+		if (!$valid) {
+			return $valid;
+		}
+
+		$count = (is_array($value)) ? count(array_filter($value)) : 0;
+
+		$min = !empty($field['min_selection']) ? (int)$field['min_selection'] : 0;
+		$max = !empty($field['max_selection']) ? (int)$field['max_selection'] : 0;
+
+		if ($min > 0 && $count < $min) {
+			return sprintf(
+				__('This gallery requires a minimum of %d %s.', 'acf-galerie-4'),
+				$min,
+				_n('item', 'items', $min, 'acf-galerie-4')
+			);
+		}
+
+		if ($max > 0 && $count > $max) {
+			return sprintf(
+				__('This gallery allows a maximum of %d %s.', 'acf-galerie-4'),
+				$max,
+				_n('item', 'items', $max, 'acf-galerie-4')
+			);
+		}
+
+		return $valid;
+	}
+
 	function update_value($value, $post_id, $field)
 	{
 		if (empty($value) || !is_array($value))

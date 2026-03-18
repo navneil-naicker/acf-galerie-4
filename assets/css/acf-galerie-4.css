@@ -102,3 +102,13 @@
   background: rgba(255, 0, 0, 0.9);
   transform: translate(-50%, -50%) scale(1.1);
 }
+
+.acf-field-galerie-4 .acf-galerie-4-validation-notice {
+  background: #fcf0f1;
+  border-left: 4px solid #d63638;
+  color: #d63638;
+  padding: 8px 12px;
+  margin: 10px 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
