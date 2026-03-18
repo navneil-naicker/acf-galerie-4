@@ -15,11 +15,26 @@
   });
 
   function wp_media_library(container, dataset) {
+    var mimeTypes = container.data("mime-types") || "";
+    var libraryOptions = {};
+
+    if (mimeTypes.trim() !== "") {
+      var types = mimeTypes.split(",").map(function(ext) {
+        return ext.trim().toLowerCase();
+      }).filter(function(ext) {
+        return ext !== "";
+      });
+      if (types.length > 0) {
+        libraryOptions.type = types;
+      }
+    }
+
     if (typeof wp.media !== "undefined") {
       const frame = wp.media({
         title: "Add Media",
         button: { text: "Add Media" },
         multiple: "add",
+        library: libraryOptions
       });
 
       frame.on("select", function () {
