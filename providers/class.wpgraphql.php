@@ -362,9 +362,11 @@ class acfg4_wpgraphql {
 
             if ( !preg_match('/image\/\w+/', $attachment->post_mime_type ) ) {
                 $file_url = wp_get_attachment_url( $attachment->ID );
+                $file_path = get_attached_file( $attachment->ID );
+                $file_size = ($file_path && file_exists($file_path)) ? filesize($file_path) : 0;
                 array_push($l_graphql_format, ['file' => basename( $file_url )]);
                 array_push($l_graphql_format, ['mimeType' => $attachment->post_mime_type]);
-                array_push($l_graphql_format, ['fileSize' => $md['filesize'] ?? ""]);
+                array_push($l_graphql_format, ['fileSize' => $file_size]);
                 array_push($l_graphql_format, ['fileUrl' => $file_url ?? ""]);
             } else {
                 $md = wp_get_attachment_metadata( $attachment->ID );
