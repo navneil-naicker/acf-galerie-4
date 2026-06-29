@@ -375,12 +375,12 @@ class acfg4_register_field_type extends \acf_field
 			return array();
 
 		// Return IDs if that's what the field is set to.
-		if ($field['return_format'] == 'media_id') {
+		if (($field['return_format'] ?? '') == 'media_id') {
 			return $attachment_ids;
 		}
 
 		// Return URLs if that's what the field is set to.
-		if ($field['return_format'] == 'media_url') {
+		if (($field['return_format'] ?? '') == 'media_url') {
 			$metadata = $this->transform($attachment_ids);
 			$attachment_urls = array();
 			foreach ($metadata as $key => $item) {
