@@ -45,6 +45,9 @@ The ACF Galerie 4 plugin is also available in a professional version, offering m
 3. Install and Activate ACF Galerie 4 from your Plugins page
 
 == Changelog ==
+= 1.4.6 =
+* [Fixed] Removed the limit on container height
+
 = 1.4.5 =
 * [Fixed] Warning: Undefined array key “return_format
 
