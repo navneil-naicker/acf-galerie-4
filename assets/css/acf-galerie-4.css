@@ -112,3 +112,29 @@
   font-size: 13px;
   margin: 0 0 10px;
 }
+
+.media-frame-title .acf-galerie-4-media-selection-count {
+  position: absolute;
+  top: 12px;
+  right: 64px;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  box-sizing: border-box;
+  padding: 0 12px;
+  border: 1px solid #135e96;
+  border-radius: 16px;
+  background: #2271b1;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.media-frame-title .acf-galerie-4-media-selection-count--over-limit {
+  border-color: #b32d2e;
+  background: #d63638;
+  box-shadow: 0 0 0 2px rgba(214, 54, 56, 0.2);
+}

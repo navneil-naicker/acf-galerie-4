@@ -18,6 +18,9 @@
   function wp_media_library(container, dataset) {
     var mimeTypes = container.data("mime-types") || "";
     var buttonLabel = container.data("button-label") || "Add Media";
+    var maxSelection = parseInt(container.data("max-selection")) || 0;
+    var selectionFeedbackEnabled =
+      String(container.data("enable-selection-feedback")) === "1";
     var libraryOptions = {};
 
     if (mimeTypes.trim() !== "") {
@@ -42,10 +45,6 @@
       frame.on("select", function () {
         var attachments = frame.state().get("selection").toJSON();
         if (!attachments) return;
-
-        var maxSelection = parseInt(container.data("max-selection")) || 0;
-        var selectionFeedbackEnabled =
-          String(container.data("enable-selection-feedback")) === "1";
 
         if (selectionFeedbackEnabled && maxSelection > 0) {
           var existingIds = $(container)
@@ -102,6 +101,35 @@
       frame.on("open", function () {
         var selection = frame.state().get("selection");
         var ids = [];
+
+        if (selectionFeedbackEnabled) {
+          var $title = frame.$el.find(".media-frame-title");
+          var $count = $title.find(".acf-galerie-4-media-selection-count");
+
+          if (!$count.length) {
+            $count = $('<span class="acf-galerie-4-media-selection-count" aria-live="polite" aria-atomic="true"></span>');
+            $title.append($count);
+          }
+
+          var updateMediaSelectionCount = function () {
+            var count = selection.length;
+            $count.toggleClass(
+              "acf-galerie-4-media-selection-count--over-limit",
+              maxSelection > 0 && count > maxSelection
+            );
+            $count.text(
+              maxSelection > 0
+                ? count + " of " + maxSelection + " selected"
+                : count + " selected"
+            );
+          };
+
+          selection.on(
+            "add remove reset",
+            updateMediaSelectionCount
+          );
+          updateMediaSelectionCount();
+        }
 
         $(container)
           .children()

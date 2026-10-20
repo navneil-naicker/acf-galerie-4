@@ -27,7 +27,7 @@ ACF Galerie 4 is a versatile WordPress plugin designed to simplify the creation 
 8. **Frontend Gallery Shortcode**: Render a responsive gallery of images and linked files with `[acf_galerie_4 field="gallery_field"]`.
 
 == Selection Feedback ==
-The live selection count and improved maximum-limit behavior are optional per field and disabled by default. Enable **Live Selection Count and Improved Maximum Limit** in the Galerie 4 field settings to show the selected item count and include existing items when limiting new selections.
+The live selection count and improved maximum-limit behavior are optional per field and disabled by default. Enable **Live Selection Count and Improved Maximum Limit** in the Galerie 4 field settings to show the selected item count in the field and media picker, and include existing items when limiting new selections.
 
 == Shortcode ==
 Use `[acf_galerie_4 field="gallery_field"]` in a post or page to display an ACF Galerie 4 field from the current post. Add `post_id="123"` to select another post, or `size="large"` to choose the WordPress image size. Images link to their full-size file, and non-image media is displayed as a file link.
