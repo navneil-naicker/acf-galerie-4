@@ -106,3 +106,9 @@
   font-size: 13px;
   line-height: 1.5;
 }
+
+.acf-field-galerie-4 .acf-galerie-4-selection-count {
+  color: #646970;
+  font-size: 13px;
+  margin: 0 0 10px;
+}

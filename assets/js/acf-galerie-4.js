@@ -5,6 +5,7 @@
     const dataset = $field && $field[0].dataset;
     if (!dataset) return false;
     datasets.push(dataset);
+    validate_selection($field.find(".acf-galerie-4-attachments"));
   }
 
   $(document).ready(function () {
@@ -43,9 +44,48 @@
         if (!attachments) return;
 
         var maxSelection = parseInt(container.data("max-selection")) || 0;
-        if (maxSelection > 0 && attachments.length > maxSelection) {
-          attachments = attachments.slice(0, maxSelection);
-          alert("Maximum selection of " + maxSelection + " item" + (maxSelection !== 1 ? "s" : "") + " allowed. Only the first " + maxSelection + " item" + (maxSelection !== 1 ? "s were" : " was") + " added.");
+        if (maxSelection > 0) {
+          var existingIds = $(container)
+            .children()
+            .map(function () {
+              return Number($(this).data("id"));
+            })
+            .get();
+          var selectedExisting = attachments.filter(function (attachment) {
+            return existingIds.includes(Number(attachment.id));
+          });
+          var newAttachments = attachments.filter(function (attachment) {
+            return !existingIds.includes(Number(attachment.id));
+          });
+          var remainingSlots = Math.max(maxSelection - selectedExisting.length, 0);
+
+          if (newAttachments.length > remainingSlots) {
+            var maxLabel = maxSelection + " item" + (maxSelection === 1 ? "" : "s");
+            var capacityMessage =
+              remainingSlots > 0
+                ? "You can add up to " +
+                  remainingSlots +
+                  " additional item" +
+                  (remainingSlots === 1 ? "" : "s") +
+                  "."
+                : "Remove an item before adding another.";
+            alert(
+              "This gallery allows a maximum of " +
+                maxLabel +
+                ", including items already selected. " +
+                capacityMessage
+            );
+            newAttachments = newAttachments.slice(0, remainingSlots);
+          }
+
+          var acceptedIds = selectedExisting
+            .concat(newAttachments)
+            .map(function (attachment) {
+              return Number(attachment.id);
+            });
+          attachments = attachments.filter(function (attachment) {
+            return acceptedIds.includes(Number(attachment.id));
+          });
         }
 
         render_attachments(attachments, container, dataset);
@@ -136,12 +176,22 @@
   }
 
   function validate_selection(container) {
+    if (!container || !container.length) return;
+
     var $container = $(container).closest(".acf-galerie-4-container");
     var $notice = $container.find(".acf-galerie-4-validation-notice");
     var count = $(container).children().length;
     var min = parseInt($(container).data("min-selection")) || 0;
     var max = parseInt($(container).data("max-selection")) || 0;
     var message = "";
+
+    $container
+      .find(".acf-galerie-4-selection-count")
+      .text(
+        max > 0
+          ? count + " of " + max + " selected"
+          : count + " selected"
+      );
 
     if (min > 0 && count < min) {
       message = "This gallery requires a minimum of " + min + " item" + (min !== 1 ? "s" : "") + ". Currently selected: " + count + ".";

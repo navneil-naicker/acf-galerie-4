@@ -267,6 +267,7 @@ class acfg4_register_field_type extends \acf_field
 					<?php
 		endif; ?>
 				</div>
+				<div class="<?php echo esc_attr($this->add_class('selection-count')); ?>" aria-live="polite" role="status"></div>
 				<div class="<?php echo esc_attr($this->add_class('validation-notice')); ?>" style="display:none;"></div>
 				<div>
 					<button type="button" class="button button-primary <?php echo esc_attr($this->add_class('add-media')); ?>">

@@ -1,0 +1,55 @@
+.acf-galerie-4-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 180px), 1fr));
+  gap: 16px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.acf-galerie-4-gallery__item {
+  min-width: 0;
+  margin: 0;
+}
+
+.acf-galerie-4-gallery__item > a {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+}
+
+.acf-galerie-4-gallery__item--image img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.acf-galerie-4-gallery__item--file > a {
+  min-height: 120px;
+  box-sizing: border-box;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid #dcdcde;
+  background: #fff;
+}
+
+.acf-galerie-4-gallery__file-type {
+  color: #646970;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.acf-galerie-4-gallery__file-title {
+  overflow-wrap: anywhere;
+}
+
+.acf-galerie-4-gallery__item > a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}

@@ -8,7 +8,7 @@
  * Text Domain: acf-galerie-4
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Version: 1.4.6
+ * Version: 1.4.7
  * Domain Path: /lang
  * Requires PHP: 7.4
  * Requires at least: 6.0
@@ -44,6 +44,10 @@ if ( ! class_exists( 'ACFG4' ) ) {
 		
 			// Register custom ACF field type
 			$this->register_acf_field_type();
+
+			// Register the frontend gallery shortcode
+			require_once __DIR__ . '/providers/class.frontend-gallery.php';
+			new acfg4_frontend_gallery();
 		}
 
 		/**
