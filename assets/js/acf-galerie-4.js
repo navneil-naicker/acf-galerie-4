@@ -44,7 +44,10 @@
         if (!attachments) return;
 
         var maxSelection = parseInt(container.data("max-selection")) || 0;
-        if (maxSelection > 0) {
+        var selectionFeedbackEnabled =
+          String(container.data("enable-selection-feedback")) === "1";
+
+        if (selectionFeedbackEnabled && maxSelection > 0) {
           var existingIds = $(container)
             .children()
             .map(function () {
@@ -86,6 +89,9 @@
           attachments = attachments.filter(function (attachment) {
             return acceptedIds.includes(Number(attachment.id));
           });
+        } else if (maxSelection > 0 && attachments.length > maxSelection) {
+          attachments = attachments.slice(0, maxSelection);
+          alert("Maximum selection of " + maxSelection + " item" + (maxSelection !== 1 ? "s" : "") + " allowed. Only the first " + maxSelection + " item" + (maxSelection !== 1 ? "s were" : " was") + " added.");
         }
 
         render_attachments(attachments, container, dataset);
@@ -185,13 +191,15 @@
     var max = parseInt($(container).data("max-selection")) || 0;
     var message = "";
 
-    $container
-      .find(".acf-galerie-4-selection-count")
-      .text(
-        max > 0
-          ? count + " of " + max + " selected"
-          : count + " selected"
-      );
+    if (String($(container).data("enable-selection-feedback")) === "1") {
+      $container
+        .find(".acf-galerie-4-selection-count")
+        .text(
+          max > 0
+            ? count + " of " + max + " selected"
+            : count + " selected"
+        );
+    }
 
     if (min > 0 && count < min) {
       message = "This gallery requires a minimum of " + min + " item" + (min !== 1 ? "s" : "") + ". Currently selected: " + count + ".";

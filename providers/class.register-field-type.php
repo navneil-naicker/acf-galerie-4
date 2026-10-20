@@ -150,6 +150,17 @@ class acfg4_register_field_type extends \acf_field
 			'placeholder' => __('Add Media', 'acf-galerie-4'),
 		)
 		);
+		acf_render_field_setting(
+			$field,
+			array(
+				'label' => __('Live Selection Count and Improved Maximum Limit', 'acf-galerie-4'),
+				'instructions' => __('Show a live item count and count existing gallery items toward the maximum selection limit.', 'acf-galerie-4'),
+				'type' => 'true_false',
+				'name' => 'enable_selection_feedback',
+				'ui' => 1,
+				'default_value' => 0,
+			)
+		);
 	}
 
 	public function render_field_validation_settings($field)
@@ -202,6 +213,7 @@ class acfg4_register_field_type extends \acf_field
 		}
 
 		$button_label = !empty($field['button_label']) ? $field['button_label'] : __('Add Media', 'acf-galerie-4');
+		$enable_selection_feedback = !empty($field['enable_selection_feedback']);
 ?>
 		<div>
 			<div class="<?php echo esc_attr($this->add_class('container')); ?>">
@@ -231,6 +243,7 @@ class acfg4_register_field_type extends \acf_field
 					data-mime-types="<?php echo esc_attr($resolved_mime_types); ?>"
 					data-min-selection="<?php echo esc_attr($field['min_selection'] ?? ''); ?>"
 					data-max-selection="<?php echo esc_attr($field['max_selection'] ?? ''); ?>"
+					data-enable-selection-feedback="<?php echo esc_attr($enable_selection_feedback ? '1' : '0'); ?>"
 					data-button-label="<?php echo esc_attr($button_label); ?>">
 					<?php if ($attachments): ?>
 						<?php
@@ -267,7 +280,9 @@ class acfg4_register_field_type extends \acf_field
 					<?php
 		endif; ?>
 				</div>
-				<div class="<?php echo esc_attr($this->add_class('selection-count')); ?>" aria-live="polite" role="status"></div>
+				<?php if ($enable_selection_feedback): ?>
+					<div class="<?php echo esc_attr($this->add_class('selection-count')); ?>" aria-live="polite" role="status"></div>
+				<?php endif; ?>
 				<div class="<?php echo esc_attr($this->add_class('validation-notice')); ?>" style="display:none;"></div>
 				<div>
 					<button type="button" class="button button-primary <?php echo esc_attr($this->add_class('add-media')); ?>">

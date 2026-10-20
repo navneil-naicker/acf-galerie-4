@@ -23,8 +23,11 @@ ACF Galerie 4 is a versatile WordPress plugin designed to simplify the creation 
 4. **User-Friendly Forms**: Allow visitors to submit content directly through front-end forms powered by [acf_form()](https://www.advancedcustomfields.com/resources/acf_form/).
 5. **Elementor and Bricks Builder Compatibility (Available in ACF Galerie 4 Pro)**: Enjoy a seamless integration with Elementor and Bricks Builder for even more customization options.
 6. **GraphQL Support**: Unlock powerful and flexible queries for your custom galleries with [WPGraphQL](https://wordpress.org/plugins/wp-graphql/) and [WPGraphQL for ACF](https://wordpress.org/plugins/wpgraphql-acf/) integration.
-7. **Selection Limits**: See the live gallery item count, with maximum limits including media already selected.
+7. **Optional Selection Feedback**: Enable a live gallery item count and have maximum limits include media already selected.
 8. **Frontend Gallery Shortcode**: Render a responsive gallery of images and linked files with `[acf_galerie_4 field="gallery_field"]`.
+
+== Selection Feedback ==
+The live selection count and improved maximum-limit behavior are optional per field and disabled by default. Enable **Live Selection Count and Improved Maximum Limit** in the Galerie 4 field settings to show the selected item count and include existing items when limiting new selections.
 
 == Shortcode ==
 Use `[acf_galerie_4 field="gallery_field"]` in a post or page to display an ACF Galerie 4 field from the current post. Add `post_id="123"` to select another post, or `size="large"` to choose the WordPress image size. Images link to their full-size file, and non-image media is displayed as a file link.
