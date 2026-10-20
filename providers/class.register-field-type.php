@@ -535,7 +535,10 @@ class acfg4_register_field_type extends \acf_field
 			"{$url}assets/js/acf-galerie-4.js",
 			array('acf-input'),
 			$version,
-			array('async', true)
+			array(
+				'strategy'  => 'async',
+				'in_footer' => true,
+			)
 		);
 
 		wp_register_style(
